@@ -22,3 +22,711 @@ Stack Trace:
 #15 {main}
 
 
+2016-12-04 14:31:23 Error: [Cake\Routing\Exception\MissingControllerException] Controller class _intellij_phpunit_launcher.php could not be found.
+Exception Attributes: array (
+  'class' => '_intellij_phpunit_launcher.php',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /_intellij_phpunit_launcher.php?file=%2FUsers%2Fjung%2FGitHub%2Falgo&load_mode=i&mode=d
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(67): Cake\Http\ControllerFactory->missingController(Object(Cake\Network\Request))
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(93): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(93): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2016-12-04 14:42:51 Error: Fatal Error (1): Class 'App\Model\Entity\DefaultPasswordHasher' not found in [/Users/jung/GitHub/algo/src/Model/Entity/User.php, line 47]
+Request URL: /users/add
+Referer URL: http://algo.local/users/add
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 14:43:29 Error: Fatal Error (1): Call to a member function allow() on boolean in [/Users/jung/GitHub/algo/src/Controller/AppController.php, line 79]
+Request URL: /users/add
+Referer URL: http://algo.local/users/add
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 14:44:35 Error: Fatal Error (1): Call to a member function allow() on boolean in [/Users/jung/GitHub/algo/src/Controller/AppController.php, line 79]
+Request URL: /users/add
+Referer URL: http://algo.local/users/add
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 14:46:01 Error: [RuntimeException] Cannot insert row, some of the primary key values are missing. Got (, ), expecting (id, group_id)
+Request URL: /users/add
+Referer URL: http://algo.local/users/add
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1564): Cake\ORM\Table->_insert(Object(App\Model\Entity\User), Array)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1492): Cake\ORM\Table->_processSave(Object(App\Model\Entity\User), Object(ArrayObject))
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Connection.php(570): Cake\ORM\Table->Cake\ORM\{closure}(Object(Cake\Database\Connection))
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1493): Cake\Database\Connection->transactional(Object(Closure))
+#4 /Users/jung/GitHub/algo/src/Controller/UsersController.php(45): Cake\ORM\Table->save(Object(App\Model\Entity\User))
+#5 [internal function]: App\Controller\UsersController->add()
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(122): Cake\Controller\Controller->invokeAction()
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\UsersController))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#19 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#20 {main}
+
+
+2016-12-04 14:51:50 Error: [RuntimeException] Cannot insert row, some of the primary key values are missing. Got (, ), expecting (id, group_id)
+Request URL: /users/add
+Referer URL: http://algo.local/users/add
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1564): Cake\ORM\Table->_insert(Object(App\Model\Entity\User), Array)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1492): Cake\ORM\Table->_processSave(Object(App\Model\Entity\User), Object(ArrayObject))
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Connection.php(570): Cake\ORM\Table->Cake\ORM\{closure}(Object(Cake\Database\Connection))
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1493): Cake\Database\Connection->transactional(Object(Closure))
+#4 /Users/jung/GitHub/algo/src/Controller/UsersController.php(45): Cake\ORM\Table->save(Object(App\Model\Entity\User))
+#5 [internal function]: App\Controller\UsersController->add()
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(122): Cake\Controller\Controller->invokeAction()
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\UsersController))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#19 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#20 {main}
+
+
+2016-12-04 14:52:33 Error: [RuntimeException] Cannot insert row, some of the primary key values are missing. Got (, ), expecting (id, group_id)
+Request URL: /users/add
+Referer URL: http://algo.local/users/add
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1564): Cake\ORM\Table->_insert(Object(App\Model\Entity\User), Array)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1492): Cake\ORM\Table->_processSave(Object(App\Model\Entity\User), Object(ArrayObject))
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Connection.php(570): Cake\ORM\Table->Cake\ORM\{closure}(Object(Cake\Database\Connection))
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php(1493): Cake\Database\Connection->transactional(Object(Closure))
+#4 /Users/jung/GitHub/algo/src/Controller/UsersController.php(45): Cake\ORM\Table->save(Object(App\Model\Entity\User))
+#5 [internal function]: App\Controller\UsersController->add()
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(122): Cake\Controller\Controller->invokeAction()
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\UsersController))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#19 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#20 {main}
+
+
+2016-12-04 15:03:41 Warning: Warning (4096): Argument 1 passed to App\Controller\ApisController::beforeFilter() must be an instance of App\Controller\Event, instance of Cake\Event\Event given, called in /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Event/EventManager.php on line 422 and defined in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 32]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+App\Controller\ApisController::beforeFilter() - APP/Controller/ApisController.php, line 32
+Cake\Event\EventManager::_callListener() - CORE/src/Event/EventManager.php, line 422
+Cake\Event\EventManager::dispatch() - CORE/src/Event/EventManager.php, line 391
+Cake\Controller\Controller::dispatchEvent() - CORE/src/Event/EventDispatcherTrait.php, line 78
+Cake\Controller\Controller::startupProcess() - CORE/src/Controller/Controller.php, line 497
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 117
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 62
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 81
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 92
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:41 Warning: Warning (512): Unable to emit headers. Headers sent in file=/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php line=753 in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 48]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 48
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:41 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 146]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 146
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 54
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:41 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 173]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 173
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 55
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:41 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 173]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 173
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 55
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:41 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 173]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 173
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 55
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:58 Warning: Warning (4096): Argument 1 passed to App\Controller\ApisController::beforeFilter() must be an instance of App\Controller\Event, instance of Cake\Event\Event given, called in /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Event/EventManager.php on line 422 and defined in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 32]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+App\Controller\ApisController::beforeFilter() - APP/Controller/ApisController.php, line 32
+Cake\Event\EventManager::_callListener() - CORE/src/Event/EventManager.php, line 422
+Cake\Event\EventManager::dispatch() - CORE/src/Event/EventManager.php, line 391
+Cake\Controller\Controller::dispatchEvent() - CORE/src/Event/EventDispatcherTrait.php, line 78
+Cake\Controller\Controller::startupProcess() - CORE/src/Controller/Controller.php, line 497
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 117
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 62
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 81
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 92
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:58 Warning: Warning (512): Unable to emit headers. Headers sent in file=/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php line=753 in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 48]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 48
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:58 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 146]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitStatusLine() - CORE/src/Http/ResponseEmitter.php, line 146
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 54
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:58 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 173]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 173
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 55
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:58 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 173]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 173
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 55
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:03:58 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Debugger.php:753) in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ResponseEmitter.php, line 173]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+header - [internal], line ??
+Cake\Http\ResponseEmitter::emitHeaders() - CORE/src/Http/ResponseEmitter.php, line 173
+Cake\Http\ResponseEmitter::emit() - CORE/src/Http/ResponseEmitter.php, line 55
+Cake\Http\Server::emit() - CORE/src/Http/Server.php, line 118
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:04:04 Warning: Warning (4096): Argument 1 passed to App\Controller\ApisController::beforeFilter() must be an instance of App\Controller\Event, instance of Cake\Event\Event given, called in /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Event/EventManager.php on line 422 and defined in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 32]
+Request URL: /Apis/test
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+App\Controller\ApisController::beforeFilter() - APP/Controller/ApisController.php, line 32
+Cake\Event\EventManager::_callListener() - CORE/src/Event/EventManager.php, line 422
+Cake\Event\EventManager::dispatch() - CORE/src/Event/EventManager.php, line 391
+Cake\Controller\Controller::dispatchEvent() - CORE/src/Event/EventDispatcherTrait.php, line 78
+Cake\Controller\Controller::startupProcess() - CORE/src/Controller/Controller.php, line 497
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 117
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 62
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 81
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 92
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-12-04 15:40:28 Error: Fatal Error (1): Call to a member function schemaCollection() on null in [/Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Table.php, line 439]
+Request URL: /Apis/initGame/1/QWEXQA12a
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 15:40:28 Error: [Cake\Error\FatalErrorException] Call to a member function schemaCollection() on null
+Request URL: /Apis/initGame/1/QWEXQA12a
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', '/Users/jung/Git...', 439)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-12-04 15:43:05 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Groups.id' in 'where clause'
+Request URL: /Apis/initGame/1/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Statement/MysqlStatement.php(36): PDOStatement->execute(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Statement/StatementDecorator.php(172): Cake\Database\Statement\MysqlStatement->execute(NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Log/LoggingStatement.php(56): Cake\Database\Statement\StatementDecorator->execute(NULL)
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Connection.php(276): Cake\Database\Log\LoggingStatement->execute()
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Database/Query.php(189): Cake\Database\Connection->run(Object(Cake\ORM\Query))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Query.php(818): Cake\Database\Query->execute()
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/ORM/Query.php(768): Cake\ORM\Query->_performCount()
+#7 /Users/jung/GitHub/algo/src/Service/AuthService.php(22): Cake\ORM\Query->count()
+#8 /Users/jung/GitHub/algo/src/Controller/ApisController.php(67): App\Service\AuthService->isValidAuth('1', 'QWEXQA12a')
+#9 [internal function]: App\Controller\ApisController->initGame('1', 'QWEXQA12a')
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(435): call_user_func_array(Array, Array)
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(122): Cake\Controller\Controller->invokeAction()
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#14 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#17 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#18 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#19 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#20 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#21 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#22 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#23 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#24 {main}
+
+
+2016-12-04 15:43:31 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/1/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:43:38 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/1/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:43:56 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/1/QWEXQA12a.json
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(93): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:44:00 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/1/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:44:33 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/1/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:44:36 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:44:54 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:44:56 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:45:03 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2016-12-04 15:45:12 Error: Fatal Error (1): Call to a member function isValidAuth() on null in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 66]
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 15:45:12 Error: [Cake\Error\FatalErrorException] Call to a member function isValidAuth() on null
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', '/Users/jung/Git...', 66)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-12-04 15:45:16 Error: Fatal Error (1): Call to a member function isValidAuth() on null in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 66]
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 15:45:16 Error: [Cake\Error\FatalErrorException] Call to a member function isValidAuth() on null
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', '/Users/jung/Git...', 66)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-12-04 15:45:26 Error: Fatal Error (4): syntax error, unexpected '->' (T_OBJECT_OPERATOR) in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 66]
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 15:45:26 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '->' (T_OBJECT_OPERATOR)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', '/Users/jung/Git...', 66)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-12-04 15:45:28 Error: Fatal Error (4): syntax error, unexpected '->' (T_OBJECT_OPERATOR) in [/Users/jung/GitHub/algo/src/Controller/ApisController.php, line 66]
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-12-04 15:45:28 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '->' (T_OBJECT_OPERATOR)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', '/Users/jung/Git...', 66)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-12-04 15:45:41 Error: [Cake\View\Exception\MissingTemplateException] Template file "Apis/init_game.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Apis/init_game.ctp',
+)
+Request URL: /Apis/initGame/2/QWEXQA12a
+Stack Trace:
+#0 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/View/View.php(593): Cake\View\View->_getViewFileName(NULL)
+#1 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#2 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(128): Cake\Controller\Controller->render()
+#3 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(96): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\ApisController))
+#4 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#5 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#6 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(62): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#7 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#8 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#9 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#10 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(81): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#11 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#12 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#13 /Users/jung/GitHub/algo/vendor/cakephp/cakephp/src/Http/Server.php(92): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/jung/GitHub/algo/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
