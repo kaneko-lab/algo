@@ -30,6 +30,11 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class ApisController extends AppController
 {
+	public function initialize()
+	{
+		parent::initialize();
+		$this->loadComponent('RequestHandler');
+	}
 
 	public function beforeFilter(Event $event)
 	{
@@ -47,11 +52,11 @@ class ApisController extends AppController
 	 */
 	public function test()
 	{
-		$jsonData = $this->request->data['query'];
-		$userData = json_decode($jsonData, true);
-		$data = array("REQ" => "OK", "DATA" => $userData);
-		echo json_encode($data);
-		exit;
+		//$jsonData = $this->request->data['query'];
+		//$userData = json_decode($jsonData, true);
+		$userData = array('user'=>"data");
+		$jsonData = json_encode(array("REQ" => "OK", "DATA" => $userData));
+		$this->set(compact('jsonData'));
 	}
 
 	/**
