@@ -1,12 +1,11 @@
 
 .idea/*
 
-documents/EER.mwb.bak
+documents/*.bak
 
 logs/*
-
-logs/debug.log
 
 *.swp
 
 tmp/*
+
