@@ -15,6 +15,7 @@
 namespace App\Controller;
 use App\Model\Vo\InitGameResult;
 use App\Service\AuthService;
+use App\Service\GameService;
 use Cake\Event\Event;
 use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
@@ -33,7 +34,7 @@ class ApisController extends AppController
 	public function initialize()
 	{
 		parent::initialize();
-		$this->loadComponent('RequestHandler');
+		//$this->loadComponent('RequestHandler');
 	}
 
 	public function beforeFilter(Event $event)
@@ -55,8 +56,9 @@ class ApisController extends AppController
 		//$jsonData = $this->request->data['query'];
 		//$userData = json_decode($jsonData, true);
 		$userData = array('user'=>"data");
-		$jsonData = json_encode(array("REQ" => "OK", "DATA" => $userData));
-		$this->set(compact('jsonData'));
+		$d = json_encode(array("REQ" => "OK", "DATA" => $userData));
+
+		$this->set('result',$d);
 	}
 
 	/**
@@ -67,15 +69,18 @@ class ApisController extends AppController
 	 */
 	public function initGame($groupId,$auth)
 	{
-		//SUCCESS
-		if((new AuthService())->isValidAuth($groupId,$auth)){
-			$result = new InitGameResult("001");
-			echo $result->getJsonResult();
-		}else{
-			$result = new InitGameResult("002");
-			echo $result->getJsonResult();
+		//Failed
+		if(!(new AuthService())->isValidAuth($groupId,$auth)){
+			$result = new InitGameResult("AUTH_FAILED_CODE");
+			$result = $result->getResult();
+			$this->set(compact('result'));
+			return;
+
 		}
-		exit;
+
+		$result = (new GameService())->initGame($groupId);
+		$this->set(compact('result'));
+		return;
 	}
 
 	/**

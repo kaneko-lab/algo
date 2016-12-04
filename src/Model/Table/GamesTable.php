@@ -43,15 +43,15 @@ class GamesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('TeamAGroups', [
+        $this->belongsTo('Groups', [
             'foreignKey' => 'team_a_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('TeamBGroups', [
+        $this->belongsTo('Groups', [
             'foreignKey' => 'team_b_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('WinGroups', [
+        $this->belongsTo('Groups', [
             'foreignKey' => 'win_group_id',
             'joinType' => 'INNER'
         ]);
@@ -93,9 +93,9 @@ class GamesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['team_a_group_id'], 'TeamAGroups'));
-        $rules->add($rules->existsIn(['team_b_group_id'], 'TeamBGroups'));
-        $rules->add($rules->existsIn(['win_group_id'], 'WinGroups'));
+        $rules->add($rules->existsIn(['team_a_group_id'], 'Groups'));
+        $rules->add($rules->existsIn(['team_b_group_id'], 'Groups'));
+        $rules->add($rules->existsIn(['win_group_id'], 'Groups'));
 
         return $rules;
     }

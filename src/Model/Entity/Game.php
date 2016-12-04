@@ -15,9 +15,9 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $modified
  * @property \Cake\I18n\Time $finished_datetime
  *
- * @property \App\Model\Entity\TeamAGroup $team_a_group
- * @property \App\Model\Entity\TeamBGroup $team_b_group
- * @property \App\Model\Entity\WinGroup $win_group
+ * @property \App\Model\Entity\Group $team_a_group
+ * @property \App\Model\Entity\Group $team_b_group
+ * @property \App\Model\Entity\Group $win_group
  * @property \App\Model\Entity\GameTurn[] $game_turns
  */
 class Game extends Entity

@@ -13,7 +13,7 @@ class Result {
         $this->_resultCode = $resultCode;
     }
 
-    public function getJsonResult(){
-        return json_encode(['CODE'=>$this->_resultCode]);
+    public function getResult(){
+        return (['CODE'=>$this->_resultCode]);
     }
 }
