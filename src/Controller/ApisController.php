@@ -13,7 +13,10 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller;
+use App\Constant\RESULT_CODE;
 use App\Model\Vo\InitGameResult;
+use App\Model\Vo\Result;
+use App\Model\Vo\CheckMatchingResult;
 use App\Service\AuthService;
 use App\Service\GameService;
 use Cake\Event\Event;
@@ -66,20 +69,14 @@ class ApisController extends AppController
 	 * 初期化に問題がなければ、Game IDを返す
 	 * @param $groupId
 	 * @param $auth
+	 * @param $gameAICode
 	 */
-	public function initGame($groupId,$auth)
+	public function initGame($groupId,$auth,$gameAICode)
 	{
-		//Failed
-		if(!(new AuthService())->isValidAuth($groupId,$auth)){
-			$result = new InitGameResult("AUTH_FAILED_CODE");
-			$result = $result->getResult();
-			$this->set(compact('result'));
-			return;
-
-		}
-
-		$result = (new GameService())->initGame($groupId);
-		$this->set(compact('result'));
+		// CHECK AUTH
+		if(!$this->checkAuth($groupId,$auth))  return;
+		$initGameResult = (new GameService())->initGame($groupId,$gameAICode);
+		$this->returnData($initGameResult->getResult());
 		return;
 	}
 
@@ -89,9 +86,18 @@ class ApisController extends AppController
 	 * @param $groupId
 	 * @param $auth
 	 * @param $gameId
+	 * @param $gameAIId
+	 * //TEST URLs
+	 * 	- http://algo.local/Apis/checkMatching/1/QWEXQA12a/6/11/.json
+	 *  - http://algo.local/Apis/checkMatching/1/QWEXQA12a/6/12/.json
+	 *
 	 */
-	public function waitMatching($groupId,$auth,$gameId)
+	public function checkMatching($groupId,$auth,$gameId,$gameAIId)
 	{
+		if(!$this->checkAuth($groupId,$auth))  return;
+		$checkMatchingResult = (new GameService())->checkMatching($groupId,$gameId,$gameAIId);
+
+		$this->returnData($checkMatchingResult->getResult());
 
 	}
 
@@ -99,10 +105,14 @@ class ApisController extends AppController
 	 * 現在のTurnの進行状況を確認する。
 	 * 自分のTurnか相手のTurnか、相手のTurn終了後の情報や、ゲームが終了したかなどの情報を得ることができる。
 	 */
-	public function checkCurrentTurn()
+	public function checkCurrentTurn($groupId,$auth,$gameId)
 	{
 
 	}
+
+
+
+
 
 	/**
 	 * 自分のTurnのアクションを行う。
@@ -115,4 +125,20 @@ class ApisController extends AppController
 
 	}
 
+	private function checkAuth($groupId,$auth)
+	{
+		//Failed
+		if(!(new AuthService())->isValidAuth($groupId,$auth)){
+			$result = new Result(RESULT_CODE::AUTH_FAILED);
+			$result = $result->getResult();
+			$this->returnData($result);
+			return false;
+		}
+		return true;
+	}
+
+	private function returnData($data)
+	{
+		$this->set('RESULT',$data);
+	}
 }

@@ -12,5 +12,5 @@ namespace App\Core;
 use App\Constant\MATCHING_TYPE;
 
 class Config {
-    const CURRENT_MATCHING_TYPE = MATCHING_TYPE::DIFF_TEAM;
+    const CURRENT_MATCHING_TYPE = MATCHING_TYPE::SAME_TEAM;
 }
