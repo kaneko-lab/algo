@@ -10,8 +10,9 @@ use Cake\Validation\Validator;
  * GameTurns Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Games
- * @property \Cake\ORM\Association\BelongsTo $Groups
- * @property \Cake\ORM\Association\BelongsTo $TurnCodes
+ * @property \Cake\ORM\Association\BelongsTo $GameAis
+ * @property \Cake\ORM\Association\BelongsTo $SourceGameCards
+ * @property \Cake\ORM\Association\BelongsTo $TargetGameCards
  *
  * @method \App\Model\Entity\GameTurn get($primaryKey, $options = [])
  * @method \App\Model\Entity\GameTurn newEntity($data = null, array $options = [])
@@ -20,6 +21,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\GameTurn patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\GameTurn[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\GameTurn findOrCreate($search, callable $callback = null)
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class GameTurnsTable extends Table
 {
@@ -36,19 +39,25 @@ class GameTurnsTable extends Table
 
         $this->table('game_turns');
         $this->displayField('id');
-        $this->primaryKey(['id', 'game_id', 'group_id', 'turn_code_id']);
+        $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Games', [
             'foreignKey' => 'game_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Groups', [
-            'foreignKey' => 'group_id',
+        $this->belongsTo('GameAis', [
+            'foreignKey' => 'game_ai_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('TurnCodes', [
-            'foreignKey' => 'turn_code_id',
-            'joinType' => 'INNER'
+        $this->belongsTo('AttackGameCards', [
+            'className'=>'GameCards',
+            'foreignKey' => 'attack_game_card_id'
+        ]);
+        $this->belongsTo('TargetGameCards', [
+            'className'=>'GameCards',
+            'foreignKey' => 'target_game_card_id'
         ]);
     }
 
@@ -65,12 +74,37 @@ class GameTurnsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('ai_uid')
-            ->allowEmpty('ai_uid');
+            ->integer('current_count')
+            ->allowEmpty('current_count');
 
         $validator
-            ->requirePresence('turn_result', 'create')
-            ->notEmpty('turn_result');
+            ->allowEmpty('turn_action_code');
+
+        $validator
+            ->boolean('can_stay')
+            ->allowEmpty('can_stay');
+
+        $validator
+            ->boolean('is_stay')
+            ->allowEmpty('is_stay');
+
+        $validator
+            ->boolean('is_success_attack')
+            ->allowEmpty('is_success_attack');
+
+        $validator
+            ->allowEmpty('turn_before');
+
+        $validator
+            ->allowEmpty('turn_result');
+
+        $validator
+            ->boolean('is_finished')
+            ->allowEmpty('is_finished');
+
+        $validator
+            ->dateTime('turn_ended')
+            ->allowEmpty('turn_ended');
 
         return $validator;
     }
@@ -85,8 +119,9 @@ class GameTurnsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['game_id'], 'Games'));
-        $rules->add($rules->existsIn(['group_id'], 'Groups'));
-        $rules->add($rules->existsIn(['turn_code_id'], 'TurnCodes'));
+        $rules->add($rules->existsIn(['game_ai_id'], 'GameAis'));
+        $rules->add($rules->existsIn(['attack_game_card_id'], 'AttackGameCards'));
+        $rules->add($rules->existsIn(['target_game_card_id'], 'TargetGameCards'));
 
         return $rules;
     }

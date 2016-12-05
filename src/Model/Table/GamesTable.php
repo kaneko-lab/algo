@@ -55,9 +55,13 @@ class GamesTable extends Table
             'foreignKey' => 'win_group_id',
             'joinType' => 'INNER'
         ]);
+
+
         $this->hasMany('GameTurns', [
             'foreignKey' => 'game_id'
         ]);
+
+
     }
 
     /**

@@ -35,7 +35,7 @@ class GameAisTable extends Table
 
         $this->table('game_ais');
         $this->displayField('name');
-        $this->primaryKey(['id', 'game_id', 'group_id']);
+        $this->primaryKey('id');
 
         $this->belongsTo('Games', [
             'foreignKey' => 'game_id',

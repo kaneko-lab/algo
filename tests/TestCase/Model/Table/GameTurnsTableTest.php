@@ -27,6 +27,7 @@ class GameTurnsTableTest extends TestCase
         'app.game_turns',
         'app.games',
         'app.groups',
+        'app.users',
         'app.turn_codes'
     ];
 

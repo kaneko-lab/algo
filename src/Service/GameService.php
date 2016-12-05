@@ -20,13 +20,10 @@ use Cake\ORM\TableRegistry;
 
 class GameService {
 
-
     public function initGame($groupId,$gameAICode){
         //Find game id
         //まだ、マッチングされていない Game IDもしくは、新規ゲームID
         $games = TableRegistry::get('games');
-
-
 
         switch(Config::CURRENT_MATCHING_TYPE){
             case MATCHING_TYPE::SAME_TEAM:
@@ -64,8 +61,6 @@ class GameService {
 
         //Create New Game
         if($record == null){
-
-
             $currentDate = date(DATE_FORMAT::READABLE_DATE);
             $entity = $games->newEntity();
             $entity->team_a_group_id = $groupId;
@@ -96,24 +91,27 @@ class GameService {
             //Check who first
             $startAIId = ($this->isATeamFirst())?$record->team_a_ai_id:$gameAIId;
 
-            //Create New AI
+            //Distributes cards.
+            $cardDistributeResult = (new GameCardService())->initDistributesCardForGame($gameId,$record->team_a_ai_id,$gameAIId);
+
+            //Create first turn.
+            //Todo Handling exception.
+            $turnResult = (new GameTurnService())->createTurn($gameId,$startAIId,1,false);
             $updateDate = date(DATE_FORMAT::READABLE_DATE);
             $updateQuery = $games->query();
             $updateQuery
                 ->update()
                 ->set( ['team_b_group_id'=>$groupId,
-                        'team_b_ai_id'=>$gameAIId,
-                        'modified'=>$updateDate,
-                        'start_ai_id'=>$startAIId,
-                        'current_ai_id'=>$startAIId])
+                    'team_b_ai_id'=>$gameAIId,
+                    'modified'=>$updateDate,
+                    'start_ai_id'=>$startAIId,
+                    'current_turn_id'=>$turnResult->getTurnId(),
+                    'current_ai_id'=>$startAIId])
                 ->where(["id"=>$gameId])
                 ->execute();
 
-
-            //Distributes cards.
-            $result = (new CardService())->initDistributesCardForGame($gameId,$record->team_a_ai_id,$gameAIId);
-            if($result->getCode() !== RESULT_CODE::SUCCESS){
-                return new InitGameResult($result->getCode());
+            if($cardDistributeResult->getCode() !== RESULT_CODE::SUCCESS){
+                return new InitGameResult($cardDistributeResult->getCode());
             }
         }
 
@@ -148,11 +146,15 @@ class GameService {
             $checkMatchingResult = new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAiId);
             $checkMatchingResult->setIsFinishedMatching(true);
             $checkMatchingResult->setIsMyTurn(($record->current_ai_id == $gameAiId));
-            $checkMatchingResult->setCardLists((new CardService())->getCurrentDistributedCards($gameId));
+            $checkMatchingResult->setTurnId($record->current_turn_id);
+            $checkMatchingResult->setCardLists((new GameCardService())->getCurrentDistributedCards($gameId));
             return $checkMatchingResult;
 
         }else{
-            return new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAiId);
+
+            $checkMatchingResult = new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAiId);
+            $checkMatchingResult->setIsFinishedMatching(false);
+            return $checkMatchingResult;
         }
     }
 

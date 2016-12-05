@@ -28,8 +28,6 @@ class GameAi extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
-        'game_id' => false,
-        'group_id' => false
+        'id' => false
     ];
 }

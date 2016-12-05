@@ -13,9 +13,10 @@ class CheckMatchingResult extends Result{
     private $_isFinishedMatching =false;
     private $_isMyTurn = false;
     private $_myAiId = 0;
+    private $_turnId = 0;
 
     /**
-     * @var CardDistributeStatus
+     * @var CurrentCardStatus
      */
     private $_cardDistributeStatus;
 
@@ -32,7 +33,7 @@ class CheckMatchingResult extends Result{
         $this->_myAiId = $myAiId;
     }
 
-    public function setCardLists(CardDistributeStatus $cardDistributeStatus){
+    public function setCardLists(CurrentCardStatus $cardDistributeStatus){
             $this->_cardDistributeStatus = $cardDistributeStatus;
     }
 
@@ -46,12 +47,17 @@ class CheckMatchingResult extends Result{
         return $this->_isMyTurn = $isMyTurn;
     }
 
+    public function setTurnId($turnId)
+    {
+        $this->_turnId = $turnId;
+    }
+
 
     public function getResult()
     {
         $cardData  = null;
         if($this->_cardDistributeStatus != null){
-            $cardData   = $this->_cardDistributeStatus->getAllCardListForAiId($this->_myAiId);
+            $cardData   = $this->_cardDistributeStatus->getAllCardListForAiId($this->_myAiId,$this->_isMyTurn);
         }
         return (
         [
@@ -59,7 +65,9 @@ class CheckMatchingResult extends Result{
             'DESC' => $this->_resultDesc,
             'DATA' =>
                 ['MATCH'=>$this->_isFinishedMatching,
-                 'MY_TURN'=>$this->_isMyTurn,
-                 'CARD_DATA'=>$cardData]]);
+                 'TURN'=>['ID'=>$this->_turnId,'IS_MINE'=>$this->_isMyTurn],
+                 'CARD_DATA'=>$cardData,
+
+                ]]);
     }
 }

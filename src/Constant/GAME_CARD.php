@@ -37,4 +37,18 @@ class GAME_CARD extends Enum{
     const BLACK_10 = 23;
     const BLACK_11 = 24;
 
+    public static function getNumber($cardId){
+        $number = $cardId - 1 ;
+        if($number >= 12)
+            $number -= 12;
+        return $number;
+    }
+
+
+    public static function getColor($cardId){
+        if($cardId <= 12)
+            return "WHITE";
+        else
+            return "BLACK";
+    }
 }

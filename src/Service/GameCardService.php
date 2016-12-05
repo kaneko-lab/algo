@@ -12,14 +12,14 @@ namespace App\Service;
 use App\Constant\GAME_CARD;
 use App\Constant\RESULT_CODE;
 use Cake\ORM\TableRegistry;
-use App\Model\Vo\CardDistributeStatus;
-class CardService {
+use App\Model\Vo\CurrentCardStatus;
+class GameCardService {
 
     /**
      * @param $gameId
      * @param $aiID1
      * @param $aiID2
-     * @return CardDistributeStatus|null
+     * @return CurrentCardStatus|null
      */
     public function initDistributesCardForGame($gameId,$aiID1,$aiID2)
     {
@@ -73,7 +73,7 @@ class CardService {
             $entity->card_id = $cardIDList[$i];
             $entity->owner_ai_id = $aiID1;
             $entity->is_visible =false;
-            $record = $gameCards->save($entity);
+            $gameCards->save($entity);
         }
 
 
@@ -82,7 +82,7 @@ class CardService {
             $entity->game_id = $gameId;
             $entity->card_id = $cardIDList[$i];
             $entity->owner_ai_id = $aiID2;
-            $entity->is_visible =false;
+            $entity->is_visible = false;
             $gameCards->save($entity);
 
         }
@@ -92,7 +92,7 @@ class CardService {
             $entity->game_id = $gameId;
             $entity->card_id = $cardIDList[$i];
             $entity->owner_ai_id = 0; // Deck
-            $entity->is_visible =false;
+            $entity->is_visible = false;
             $gameCards->save($entity);
         }
 
@@ -101,7 +101,7 @@ class CardService {
 
     /**
      * @param $gameId
-     * @return CardDistributeStatus|null
+     * @return CurrentCardStatus|null
      */
     public function getCurrentDistributedCards($gameId)
     {
@@ -110,25 +110,58 @@ class CardService {
         $query = $gameCards
                     ->find('all')
                     ->where(['game_id ' => $gameId])
-                    ->contain(['Cards']);
+                    ->contain(['Cards'])
+                    ->order('Cards.order');
 
         if($query->count()==0){
             return null;
         }else{
 
             if($query->count()<24){
-                return new CardDistributeStatus(RESULT_CODE::CARD_DISTRIBUTE_WRONG_CARD_NUM);
+                return new CurrentCardStatus(RESULT_CODE::CARD_DISTRIBUTE_WRONG_CARD_NUM);
             }
 
-            $cardDistributeStatus = new CardDistributeStatus(RESULT_CODE::SUCCESS);
+            $cardDistributeStatus = new CurrentCardStatus(RESULT_CODE::SUCCESS);
             foreach($query as $row){
                 $cardDistributeStatus->addCard($row->owner_ai_id ,$row);
             }
 
-            $cardDistributeStatus->sortCards();
+            //$cardDistributeStatus->sortCards();
             return $cardDistributeStatus;
         }
-
     }
 
+
+    /**
+     * @param $sourceCardId
+     * @param $targetCardId
+     * @param $number
+     * @return bool
+     */
+    public function attack($aiId, $sourceCardId, $targetCardId,$number)
+    {
+        $attackResult = false;
+        $gameCards = TableRegistry::get('game_cards');
+        $targetCardRecord = $gameCards->get($targetCardId,['contain'=>['Cards']]);
+        $sourceCardRecord = $gameCards->newEntity();
+
+
+        //Success Attack
+        if($targetCardRecord->card->number == $number){
+            $targetCardRecord->is_visible = true;
+            $gameCards->save($targetCardRecord);
+            $attackResult = true;
+            $sourceCardRecord->is_current_attack_card = true;
+        }
+        //Failed Attack
+        else {
+            $sourceCardRecord->is_visible = true;
+            $sourceCardRecord->is_current_attack_card = false;
+        }
+
+        $sourceCardRecord->id = $sourceCardId;
+        $sourceCardRecord->owner_ai_id = $aiId;
+        $gameCards->save($sourceCardRecord);
+        return $attackResult;
+    }
 }

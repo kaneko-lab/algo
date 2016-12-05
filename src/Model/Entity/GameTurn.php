@@ -8,10 +8,20 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $game_id
- * @property int $group_id
- * @property int $turn_code_id
- * @property int $ai_uid
+ * @property int $game_ai_id
+ * @property int $current_count
+ * @property string $turn_action_code
+ * @property int $attack_game_card_id
+ * @property int $target_game_card_id
+ * @property bool $can_stay
+ * @property bool $is_stay
+ * @property bool $is_success_attack
+ * @property string $turn_before
  * @property string $turn_result
+ * @property bool $is_finished
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\Time $turn_ended
  *
  * @property \App\Model\Entity\Game $game
  * @property \App\Model\Entity\Group $group
@@ -31,9 +41,6 @@ class GameTurn extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
-        'game_id' => false,
-        'group_id' => false,
-        'turn_code_id' => false
+        'id' => false
     ];
 }
