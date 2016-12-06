@@ -8,7 +8,7 @@
 namespace App\Model\Vo;
 use App\Constant\RESULT_CODE;
 use App\Constant\RESULT_DESC;
-use App\COnstant\JSON_KEY;
+use App\Constant\JSON_KEY;
 
 class Result {
     protected $_resultCode;
