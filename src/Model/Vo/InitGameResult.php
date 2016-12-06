@@ -7,7 +7,7 @@
  */
 
 namespace App\Model\Vo;
-use App\COnstant\JSON_KEY;
+use App\Constant\JSON_KEY;
 
 
 class InitGameResult extends Result{
