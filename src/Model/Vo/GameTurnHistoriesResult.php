@@ -13,10 +13,26 @@ use App\Constant\GAME_CARD;
 use Cake\I18n\Time;
 class GameTurnHistoriesResult extends Result{
     private $_gameId;
+    private $_gameAiId;
     private $_histories = [];
+    private $_isAdmin;
+
+    public function setIsAdmin($isAdmin)
+    {
+        $this->_isAdmin = $isAdmin;
+    }
+
     public function setGameId($gameId)
     {
+        $this->_gameId = $gameId;
+    }
 
+    /**
+     * @param $gameAiId
+     */
+    public function setGameAiId($gameAiId)
+    {
+        $this->_gameAiId = $gameAiId;
     }
 
     public function setHistories($histories)
@@ -25,11 +41,14 @@ class GameTurnHistoriesResult extends Result{
     }
 
 
+    /**
+     * todo アッタクしたカード情報を分けて表示する
+     * @return array
+     */
     public function getWellFormedHistories()
     {
         $data = [];
         foreach($this->_histories as $history){
-
             $atkCardInfo=[];
             if(!empty($history->attack_game_card)){
                 $atkCardInfo =[
@@ -44,15 +63,14 @@ class GameTurnHistoriesResult extends Result{
             if(!empty($history->target_game_card)){
                 $tgtCardInfo=[
                     'GAME_CARD_ID'=>$history->target_game_card->id,
-                    'CARD_ID'=>$history->target_game_card->card_id,
-                    'NUMBER' =>GAME_CARD::getNumber($history->target_game_card->id),
+                    'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:GAME_CARD::UNKNOWN,
+                    'NUMBER' =>($history->is_success_attack||$this->_isAdmin)?GAME_CARD::getNumber($history->target_game_card->id):GAME_CARD::UNKNOWN,
                     'COLOR'  =>GAME_CARD::getColor($history->target_game_card->id),
                 ];
             }
 
-            $turnEnded  = 0;
-            if(!empty($history->turn_ended))
-                $turnEnded = $history->turn_ended->i18nFormat(Time::UNIX_TIMESTAMP_FORMAT);
+            $turnEndedTimestamp  = 0;
+            if(!empty($history->turn_ended)) $turnEndedTimestamp = $history->turn_ended->i18nFormat(Time::UNIX_TIMESTAMP_FORMAT);
             $data[$history->current_count] = array(
                 'TURN_ID'=>$history->id,
                 'AI_ID'=>$history->game_ai_id,
@@ -65,7 +83,7 @@ class GameTurnHistoriesResult extends Result{
                 'COUNT'=>$history->current_count,
                 'IS_FINISHED'=>boolval($history->is_finished),
                 'TURN_STARTED'=>$history->created->i18nFormat(Time::UNIX_TIMESTAMP_FORMAT),
-                'TURN_ENDED'=>$turnEnded
+                'TURN_ENDED'=>$turnEndedTimestamp
             );
         }
         return $data;

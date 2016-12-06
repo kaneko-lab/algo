@@ -8,6 +8,7 @@
 
 namespace App\Model\Vo;
 
+use App\Constant\JSON_KEY;
 use App\Constant\RESULT_DESC;
 class CheckMatchingResult extends Result{
     private $_isFinishedMatching =false;
@@ -61,13 +62,12 @@ class CheckMatchingResult extends Result{
         }
         return (
         [
-            'CODE' => $this->_resultCode,
-            'DESC' => $this->_resultDesc,
-            'DATA' =>
-                ['MATCH'=>$this->_isFinishedMatching,
-                 'TURN'=>['ID'=>$this->_turnId,'IS_MINE'=>$this->_isMyTurn],
-                 'CARD_DATA'=>$cardData,
-
+            JSON_KEY::RESULT_CODE => $this->_resultCode,
+            JSON_KEY::RESULT_DESC => $this->_resultDesc,
+            JSON_KEY::RESULT_DATA =>
+                [JSON_KEY::IS_MATCHED=>$this->_isFinishedMatching,
+                 JSON_KEY::TURN_INFO=>[JSON_KEY::ID=>$this->_turnId,JSON_KEY::TURN_IS_MINE=>$this->_isMyTurn],
+                 JSON_KEY::CARD_DATA=>$cardData,
                 ]]);
     }
 }

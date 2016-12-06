@@ -163,6 +163,16 @@ class GameService {
         return (mt_rand(0,1) == 0);
     }
 
+    /**
+     * @param $gameId
+     * @return \Cake\Datasource\EntityInterface|mixed
+     */
+    public function getGameEntity($gameId)
+    {
+        $games = TableRegistry::get('games');
+        return $games->get($gameId);
+
+    }
 
 
 }

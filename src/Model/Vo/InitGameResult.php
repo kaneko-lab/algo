@@ -7,6 +7,7 @@
  */
 
 namespace App\Model\Vo;
+use App\COnstant\JSON_KEY;
 
 
 class InitGameResult extends Result{
@@ -27,8 +28,8 @@ class InitGameResult extends Result{
     {
         return (
                 [
-                    'CODE' => $this->_resultCode,
-                    'DESC' => $this->_resultDesc,
-                    'DATA' => ['GAME_ID'=>$this->_gameId,'GAME_AI_ID'=>$this->_gameAIId]]);
+                    JSON_KEY::RESULT_CODE  => $this->_resultCode,
+                    JSON_KEY::RESULT_DESC => $this->_resultDesc,
+                    JSON_KEY::RESULT_DATA => ['GAME_ID'=>$this->_gameId,'GAME_AI_ID'=>$this->_gameAIId]]);
     }
 }

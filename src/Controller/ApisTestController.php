@@ -98,16 +98,19 @@ class ApisTestController extends AppController
 
 	public function testAttack()
 	{
-		$attackCardId = 9;
-		$targetCardId = 1;
-		$number = 8;
-		$aiId = 2;
+		$attackCardId = 13;
+		$targetCardId = 6;
+		$number = 2;
+		$aiId = 1;
 		$gameId = 1;
-		$turnId = 1;
+		$turnId = 4;
 		$actionType = ACTION_TYPE::ATTACK;
 		$gameTurnService = new GameTurnService();
-		$result = $gameTurnService->processMyTurn($gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
-		$this->returnData($result->getResult());
+		$result = $gameTurnService->doTurnAction($gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
+		if($result->getCode() == RESULT_CODE::SUCCESS)
+			$this->returnData($result->getWellFormedData());
+		else
+			$this->returnData($result->getResult());
 	}
 
 
@@ -129,12 +132,21 @@ class ApisTestController extends AppController
 	}
 
 
+	public function testCheckCurrentTurn()
+	{
+		$gameId = 1;
+		$gameAiId = 1;
+		$checkCurrentTurnResult = (new GameTurnService())->checkCurrentTurn($gameId,$gameAiId);
+		$this->returnData($checkCurrentTurnResult->getWellFormedData());
+	}
+
 	public function testTurnHistories()
 	{
 		$gameId = 1;
+		$gameAiId = 1;
 		$gameTurnService = new GameTurnService();
 		$gameTurnHistoriesResult = new GameTurnHistoriesResult(RESULT_CODE::SUCCESS);
-		$result = $gameTurnService->getTurnHistory($gameId);
+		$result = $gameTurnService->getTurnHistoryResult($gameId,$gameAiId);
 		$gameTurnHistoriesResult->setGameId($gameId);
 		$gameTurnHistoriesResult->setHistories($result);
 		$this->returnData($gameTurnHistoriesResult->getWellFormedHistories());
@@ -142,7 +154,7 @@ class ApisTestController extends AppController
 	}
 
 
-	public function testProcessMyTurn($groupId,$gameId,$gameAIId,$turnId,$attackType,$sourceCardId = 0, $targetCardId = 0)
+	public function testDoMyTurn($groupId,$gameId,$gameAIId,$turnId,$attackType,$sourceCardId = 0, $targetCardId = 0)
 	{
 
 	}

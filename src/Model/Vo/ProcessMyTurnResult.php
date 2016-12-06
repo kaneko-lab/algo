@@ -16,6 +16,12 @@ class ProcessMyTurnResult extends Result{
      * @var CurrentCardStatus
      */
     private $_currentCardStatus = null;
+
+    private $_gameTurnHistoriesResult = null;
+
+
+
+
     public function setWinnerAiId($winnerAiId)
     {
         $this->_winnerAiId = $winnerAiId;
@@ -27,7 +33,7 @@ class ProcessMyTurnResult extends Result{
         $this->_currentCardStatus = $currentCardStatus;
     }
 
-    public function setTurnHistories(){
+    public function setTurnHistories(GameTurnHistoriesResult $gameTurnHistoriesResult){
 
     }
 }

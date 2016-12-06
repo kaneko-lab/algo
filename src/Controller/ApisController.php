@@ -104,15 +104,18 @@ class ApisController extends AppController
 	/**
 	 * 現在のTurnの進行状況を確認する。
 	 * 自分のTurnか相手のTurnか、相手のTurn終了後の情報や、ゲームが終了したかなどの情報を得ることができる。
+	 *
+	 * @param $groupId
+	 * @param $auth
+	 * @param $gameId
+	 * @param $gameAIId
 	 */
-	public function checkCurrentTurn($groupId,$auth,$gameId)
+	public function checkCurrentTurn($groupId,$auth,$gameId,$gameAIId)
 	{
-
+		if(!$this->checkAuth($groupId,$auth))  return;
+		$checkCurrentTurnResult = (new GameTurnService())->checkCurrentTurn($gameId,$gameAIId);
+		$this->returnData($checkCurrentTurnResult->getWellFormedData());
 	}
-
-
-
-
 
 	/**
 	 * 自分のTurnのアクションを行う。
@@ -120,9 +123,29 @@ class ApisController extends AppController
 	 * STAYは以前のTURNでかなるざATTACKが成功した必要がある。
 	 * Turn終了後の情報を得ることができる。
 	 */
-	public function turnAction()
-	{
+	/**
+	 * @param $groupId
+	 * @param $auth
+	 * @param $gameId
+	 * @param $aiId
+	 * @param $turnId
+	 * @param $actionType
+	 * @param $attackCardId
+	 * @param $targetCardId
+	 * @param $number
+	 */
 
+	//Todo Add attack result to result parameter.
+
+	public function doTurnAction($groupId,$auth,$gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number)
+	{
+		if(!$this->checkAuth($groupId,$auth))  return;
+		$gameTurnService = new GameTurnService();
+		$result = $gameTurnService->doTurnAction($gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
+		if($result->getCode() == RESULT_CODE::SUCCESS)
+			$this->returnData($result->getWellFormedData());
+		else
+			$this->returnData($result->getResult());
 	}
 
 	private function checkAuth($groupId,$auth)
@@ -137,6 +160,9 @@ class ApisController extends AppController
 		return true;
 	}
 
+	/**
+	 * @param $data
+	 */
 	private function returnData($data)
 	{
 		$this->set('RESULT',$data);

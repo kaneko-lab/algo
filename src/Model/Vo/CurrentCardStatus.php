@@ -10,6 +10,8 @@
 namespace App\Model\Vo;
 
 
+use App\Constant\GAME_CARD;
+
 class CurrentCardStatus extends Result{
     private $_cardList=[];
     private $_attackCard = null;
@@ -97,14 +99,14 @@ class CurrentCardStatus extends Result{
 
         //相手のカード整理
         foreach($this->getOpponentCardListForAiId($aiId) as $gameCard){
-            $number = ($gameCard->is_visible)?$gameCard->card->number:-1;
+            $number = ($gameCard->is_visible)?$gameCard->card->number:GAME_CARD::UNKNOWN;
             $gameCardId = $gameCard->id;
             $opponentCards[] =
                 array(
                     'ID'=>$gameCardId,
                     'NUMBER'=>$number,
                     'COLOR'=>$gameCard->card->color,
-                    'VISIBLE'=>($gameCard->is_visible == true)
+                    'VISIBLE'=>boolval($gameCard->is_visible)
                 );
         }
 
@@ -136,7 +138,7 @@ class CurrentCardStatus extends Result{
                 $deckCards[] =
                     array(
                         'ID'=>$gameCard->id,
-                        'NUMBER'=>-1,
+                        'NUMBER'=>GAME_CARD::UNKNOWN,
                         'COLOR'=>$gameCard->card->color,
                         'VISIBLE'=>false
                     );

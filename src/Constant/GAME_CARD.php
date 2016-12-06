@@ -36,6 +36,7 @@ class GAME_CARD extends Enum{
     const BLACK_9 = 22;
     const BLACK_10 = 23;
     const BLACK_11 = 24;
+    const UNKNOWN = -1;
 
     public static function getNumber($cardId){
         $number = $cardId - 1 ;

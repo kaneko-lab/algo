@@ -8,6 +8,7 @@
 namespace App\Model\Vo;
 use App\Constant\RESULT_CODE;
 use App\Constant\RESULT_DESC;
+use App\COnstant\JSON_KEY;
 
 class Result {
     protected $_resultCode;
@@ -28,8 +29,8 @@ class Result {
     {
         return (
             [
-            'CODE' => $this->_resultCode,
-            'DESC' => $this->_resultDesc,
-            'DATA' => null]);
+                JSON_KEY::RESULT_CODE => $this->_resultCode,
+                JSON_KEY::RESULT_DESC => $this->_resultDesc,
+                JSON_KEY::RESULT_DATA => null]);
     }
 }
