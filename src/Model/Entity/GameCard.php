@@ -10,11 +10,12 @@ use Cake\ORM\Entity;
  * @property int $game_id
  * @property int $card_id
  * @property int $owner_ai_id
- * @property int $is_visible
+ * @property bool $is_current_attack_card
+ * @property bool $is_visible
+
  *
  * @property \App\Model\Entity\Game $game
  * @property \App\Model\Entity\Card $card
- * @property \App\Model\Entity\OwnerAi $owner_ai
  */
 class GameCard extends Entity
 {

@@ -76,14 +76,13 @@ class ApisTestController extends AppController
 		$cardService = new GameCardService();
 		$result = $cardService->initDistributesCardForGame($gameId,$team_a_ai_id,$team_b_ai_id);
 		$isMyTurn = false;
-		pr($result->getAllCardListForAiId($team_a_ai_id,$isMyTurn));
-		pr($result->getAllCardListForAiId($team_b_ai_id,!$isMyTurn));
+		pr($result->getAllCardArrayForGameAIId($team_a_ai_id));
+		pr($result->getAllCardArrayForGameAIId($team_b_ai_id));
 
 	}
 
+
 	/**
-	 * @param $groupId
-	 * @param $gameId
 	 * @param $gameAIId
 	 */
 	public function testCheckMatching($gameAIId)
@@ -98,21 +97,42 @@ class ApisTestController extends AppController
 
 	public function testAttack()
 	{
-		$attackCardId = 13;
-		$targetCardId = 6;
-		$number = 2;
-		$aiId = 1;
+		$attackCardId = 19;
+		$targetCardId = 1;
+		$number = 0;
+		$gameAIId = 1;
 		$gameId = 1;
 		$turnId = 4;
-		$actionType = ACTION_TYPE::ATTACK;
+		$gameCardService = new GameCardService();
+		$result = $gameCardService->attack($gameAIId,$attackCardId,$targetCardId,$number);
+	}
+
+
+	public function testDoTurnAction()
+	{
+		$attackCardId = 23;
+		$targetCardId = 3;
+		$number = 5;
+		$gameAIId = 2;
+		$gameId = 1;
+		$turnId = 2;
+		$actionType = ACTION_TYPE::STAY;
 		$gameTurnService = new GameTurnService();
-		$result = $gameTurnService->doTurnAction($gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
+		$result = $gameTurnService->doTurnAction($gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
 		if($result->getCode() == RESULT_CODE::SUCCESS)
 			$this->returnData($result->getWellFormedData());
 		else
 			$this->returnData($result->getResult());
 	}
 
+
+	public function testCheckCurrentTurn()
+	{
+		$gameId = 1;
+		$gameAIId = 1;
+		$checkCurrentTurnResult = (new GameTurnService())->checkCurrentTurn($gameId,$gameAIId);
+		$this->returnData($checkCurrentTurnResult->getWellFormedData());
+	}
 
 	/**
 	 * Passed Tests
@@ -132,13 +152,7 @@ class ApisTestController extends AppController
 	}
 
 
-	public function testCheckCurrentTurn()
-	{
-		$gameId = 1;
-		$gameAiId = 1;
-		$checkCurrentTurnResult = (new GameTurnService())->checkCurrentTurn($gameId,$gameAiId);
-		$this->returnData($checkCurrentTurnResult->getWellFormedData());
-	}
+
 
 	public function testTurnHistories()
 	{
@@ -150,12 +164,6 @@ class ApisTestController extends AppController
 		$gameTurnHistoriesResult->setGameId($gameId);
 		$gameTurnHistoriesResult->setHistories($result);
 		$this->returnData($gameTurnHistoriesResult->getWellFormedHistories());
-
-	}
-
-
-	public function testDoMyTurn($groupId,$gameId,$gameAIId,$turnId,$attackType,$sourceCardId = 0, $targetCardId = 0)
-	{
 
 	}
 

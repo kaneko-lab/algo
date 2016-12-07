@@ -12,19 +12,22 @@ namespace App\Service;
 use App\Constant\GAME_CARD;
 use App\Constant\RESULT_CODE;
 use Cake\ORM\TableRegistry;
-use App\Model\Vo\CurrentCardStatus;
+use App\Service\CurrentCardStatusService;
+use Psy\Exception\ErrorException;
+use App\Model\Entity\GameCard;
+
 class GameCardService {
 
     /**
      * @param $gameId
-     * @param $aiID1
-     * @param $aiID2
-     * @return CurrentCardStatus|null
+     * @param $gameAIID1
+     * @param $gameAIID2
+     * @return CurrentCardStatusService|null
      */
-    public function initDistributesCardForGame($gameId,$aiID1,$aiID2)
+    public function initDistributesCardForGame($gameId,$gameAIID1,$gameAIID2)
     {
 
-        $result = $this->getCurrentDistributedCards($gameId,$aiID1);
+        $result = $this->getCurrentDistributedCards($gameId);
         if($result != null)
             return $result;
 
@@ -71,7 +74,7 @@ class GameCardService {
             $entity = $gameCards->newEntity();
             $entity->game_id = $gameId;
             $entity->card_id = $cardIDList[$i];
-            $entity->owner_ai_id = $aiID1;
+            $entity->owner_ai_id = $gameAIID1;
             $entity->is_visible =false;
             $gameCards->save($entity);
         }
@@ -81,7 +84,7 @@ class GameCardService {
             $entity = $gameCards->newEntity();
             $entity->game_id = $gameId;
             $entity->card_id = $cardIDList[$i];
-            $entity->owner_ai_id = $aiID2;
+            $entity->owner_ai_id = $gameAIID2;
             $entity->is_visible = false;
             $gameCards->save($entity);
 
@@ -99,9 +102,11 @@ class GameCardService {
         return $this->getCurrentDistributedCards($gameId);
     }
 
+
     /**
      * @param $gameId
-     * @return CurrentCardStatus|null
+     * @return CurrentCardStatusService|null
+     * @throws ErrorException
      */
     public function getCurrentDistributedCards($gameId)
     {
@@ -118,50 +123,64 @@ class GameCardService {
         }else{
 
             if($query->count()<24){
-                return new CurrentCardStatus(RESULT_CODE::CARD_DISTRIBUTE_WRONG_CARD_NUM);
+                throw new ErrorException("Wrong total card number for game " . $gameId);
             }
 
-            $cardDistributeStatus = new CurrentCardStatus(RESULT_CODE::SUCCESS);
+            $currentCardStatusService = new CurrentCardStatusService();
             foreach($query as $row){
-                $cardDistributeStatus->addCard($row->owner_ai_id ,$row);
+                $currentCardStatusService->addCard($row->owner_ai_id ,$row);
             }
-
-            //$cardDistributeStatus->sortCards();
-            return $cardDistributeStatus;
+            return $currentCardStatusService;
         }
     }
 
 
+
     /**
-     * @param $sourceCardId
+     * @param $gameAIId
+     * @param $attackCardId
      * @param $targetCardId
      * @param $number
      * @return bool
      */
-    public function attack($aiId, $sourceCardId, $targetCardId,$number)
+    public function attack($gameAIId, $attackCardId, $targetCardId,$number)
     {
         $attackResult = false;
         $gameCards = TableRegistry::get('game_cards');
         $targetCardRecord = $gameCards->get($targetCardId,['contain'=>['Cards']]);
-        $sourceCardRecord = $gameCards->newEntity();
-
+        $attackCardRecord = $gameCards->newEntity();
+        $attackCardRecord->is_current_attack_card = true;
 
         //Success Attack
         if($targetCardRecord->card->number == $number){
             $targetCardRecord->is_visible = true;
             $gameCards->save($targetCardRecord);
             $attackResult = true;
-            $sourceCardRecord->is_current_attack_card = true;
         }
         //Failed Attack
         else {
-            $sourceCardRecord->is_visible = true;
-            $sourceCardRecord->is_current_attack_card = false;
+            $attackCardRecord->is_visible = true;
+            $attackCardRecord->is_current_attack_card = false;
         }
 
-        $sourceCardRecord->id = $sourceCardId;
-        $sourceCardRecord->owner_ai_id = $aiId;
-        $gameCards->save($sourceCardRecord);
+        $attackCardRecord->id = $attackCardId;
+        $attackCardRecord->owner_ai_id = $gameAIId;
+        $gameCards->save($attackCardRecord);
         return $attackResult;
+    }
+
+
+    /**
+     * @param $attackCardId
+     * @return bool
+     */
+    public function validateAttackCard($attackCardId){
+        $gameCards = TableRegistry::get('game_cards');
+        $gameCardEntity = $gameCards->get($attackCardId);
+        if($gameCardEntity == null || !$gameCardEntity->is_current_attack_card )
+            return false;
+        return true;
+
+
     }
 }

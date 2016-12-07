@@ -11,7 +11,7 @@ namespace App\Model\Vo;
 
 use App\Constant\GAME_CARD;
 use App\Constant\JSON_KEY;
-
+use App\Service\CurrentCardStatusService;
 class CheckCurrentTurnResult extends Result
 {
     private $_gameEntity;
@@ -23,7 +23,7 @@ class CheckCurrentTurnResult extends Result
     private $_isProcessing;
     private $_gameAiId;
     /**
-     * @var CurrentCardStatus
+     * @var CurrentCardStatusService
      */
     private $_currentCardStatus;
 
@@ -48,7 +48,7 @@ class CheckCurrentTurnResult extends Result
         $this->_gameAiId = $gameAiId;
     }
 
-    public function setCurrentCardStatus(CurrentCardStatus $currentCardStatus)
+    public function setCurrentCardStatus(CurrentCardStatusService $currentCardStatus)
     {
         $this->_currentCardStatus = $currentCardStatus;
     }
@@ -64,7 +64,7 @@ class CheckCurrentTurnResult extends Result
                 [
                     JSON_KEY::IS_MATCHED=>$isMatched,
                     JSON_KEY::TURN_INFO=>[JSON_KEY::ID=>$this->_gameEntity->current_turn_id,JSON_KEY::TURN_IS_MINE=>$isMyTurn],
-                    JSON_KEY::CARD_DATA=>$this->_currentCardStatus->getAllCardListForAiId($this->_gameAiId,$isMyTurn),
+                    JSON_KEY::CARD_DATA=>$this->_currentCardStatus->getAllCardArrayForGameAIId($this->_gameAiId,$isMyTurn),
                     JSON_KEY::TURN_HISTORIES=>$this->_gameTurnHistoriesResult->getWellFormedHistories()
                 ]
         ];

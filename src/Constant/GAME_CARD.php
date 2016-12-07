@@ -52,4 +52,7 @@ class GAME_CARD extends Enum{
         else
             return "BLACK";
     }
+
+    const DECK_CARD_KEY = 0;
+    const MAX_CARD_NUM = 24;
 }

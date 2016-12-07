@@ -70,12 +70,12 @@ class GameService {
             $gameId = $record->id;
 
             //Create New AI
-            $gameAIId = (new GameAIService())->getNewAI($groupId,$gameId,$gameAICode);
+            $currentGameAIId = (new GameAIService())->getNewAI($groupId,$gameId,$gameAICode);
             //Update Records
             $updateQuery = $games->query();
             $updateQuery
                 ->update()
-                ->set(['team_a_ai_id'=>$gameAIId])
+                ->set(['team_a_ai_id'=>$currentGameAIId])
                 ->where(['id'=>$gameId])
                 ->execute();
 
@@ -86,13 +86,15 @@ class GameService {
         {
 
             $gameId = $record->id;
-            $gameAIId = (new GameAIService())->getNewAI($groupId,$gameId,$gameAICode);
+            $currentGameAIId = (new GameAIService())->getNewAI($groupId,$gameId,$gameAICode);
 
             //Check who first
-            $startAIId = ($this->isATeamFirst())?$record->team_a_ai_id:$gameAIId;
+            $startAIId = ($this->isATeamFirst())?$record->team_a_ai_id:$currentGameAIId;
 
             //Distributes cards.
-            $cardDistributeResult = (new GameCardService())->initDistributesCardForGame($gameId,$record->team_a_ai_id,$gameAIId);
+            $gameCardService = new GameCardService();
+            $currentCardStatus = $gameCardService->initDistributesCardForGame($gameId,$record->team_a_ai_id,$currentGameAIId);
+            $currentCardStatus->createAttackCard($startAIId);
 
             //Create first turn.
             //Todo Handling exception.
@@ -101,22 +103,19 @@ class GameService {
             $updateQuery = $games->query();
             $updateQuery
                 ->update()
-                ->set( ['team_b_group_id'=>$groupId,
-                    'team_b_ai_id'=>$gameAIId,
+                ->set(
+                    ['team_b_group_id'=>$groupId,
+                    'team_b_ai_id'=>$currentGameAIId,
                     'modified'=>$updateDate,
                     'start_ai_id'=>$startAIId,
                     'current_turn_id'=>$turnResult->getTurnId(),
                     'current_ai_id'=>$startAIId])
                 ->where(["id"=>$gameId])
                 ->execute();
-
-            if($cardDistributeResult->getCode() !== RESULT_CODE::SUCCESS){
-                return new InitGameResult($cardDistributeResult->getCode());
-            }
         }
 
         $initGameResult = new InitGameResult(RESULT_CODE::SUCCESS);
-        $initGameResult->setGameAIId($gameAIId);
+        $initGameResult->setGameAIId($currentGameAIId);
         $initGameResult->setGameId($gameId);
 
         return $initGameResult;

@@ -10,6 +10,7 @@ namespace App\Model\Vo;
 
 use App\Constant\JSON_KEY;
 use App\Constant\RESULT_DESC;
+use App\Service\CurrentCardStatusService;
 class CheckMatchingResult extends Result{
     private $_isFinishedMatching =false;
     private $_isMyTurn = false;
@@ -17,7 +18,7 @@ class CheckMatchingResult extends Result{
     private $_turnId = 0;
 
     /**
-     * @var CurrentCardStatus
+     * @var CurrentCardStatusService
      */
     private $_cardDistributeStatus;
 
@@ -34,7 +35,7 @@ class CheckMatchingResult extends Result{
         $this->_myAiId = $myAiId;
     }
 
-    public function setCardLists(CurrentCardStatus $cardDistributeStatus){
+    public function setCardLists(CurrentCardStatusService $cardDistributeStatus){
             $this->_cardDistributeStatus = $cardDistributeStatus;
     }
 
@@ -58,7 +59,7 @@ class CheckMatchingResult extends Result{
     {
         $cardData  = null;
         if($this->_cardDistributeStatus != null){
-            $cardData   = $this->_cardDistributeStatus->getAllCardListForAiId($this->_myAiId,$this->_isMyTurn);
+            $cardData   = $this->_cardDistributeStatus->getAllCardArrayForGameAIId($this->_myAiId,$this->_isMyTurn);
         }
         return (
         [

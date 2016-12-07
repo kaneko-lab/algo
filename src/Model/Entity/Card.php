@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
+ * @property int order
  *
  * @property \App\Model\Entity\GameCard[] $game_cards
  */

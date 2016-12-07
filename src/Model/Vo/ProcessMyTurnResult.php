@@ -8,12 +8,12 @@
 
 namespace App\Model\Vo;
 
-
+use App\Service\CurrentCardStatusService;
 class ProcessMyTurnResult extends Result{
     private $_isGameOver = false;
     private $_winnerAiId = 0;
     /**
-     * @var CurrentCardStatus
+     * @var CurrentCardStatusService
      */
     private $_currentCardStatus = null;
 
@@ -28,7 +28,7 @@ class ProcessMyTurnResult extends Result{
         $this->_isGameOver = true;
     }
 
-    public function setCurrentCardStatus(CurrentCardStatus $currentCardStatus)
+    public function setCurrentCardStatus(CurrentCardStatusService $currentCardStatus)
     {
         $this->_currentCardStatus = $currentCardStatus;
     }
