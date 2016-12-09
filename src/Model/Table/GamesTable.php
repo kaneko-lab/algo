@@ -56,7 +56,11 @@ class GamesTable extends Table
             'joinType' => 'INNER'
         ]);
 
-
+        $this->belongsTo('CurrentGameTurns',[
+            'className'=>'GameTurns',
+            'foreignKey'=>'current_turn_id',
+            'joinType'=>'INNER'
+        ]);
         $this->hasMany('GameTurns', [
             'foreignKey' => 'game_id'
         ]);

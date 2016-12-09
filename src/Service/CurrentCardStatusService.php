@@ -51,13 +51,13 @@ class CurrentCardStatusService {
     }
 
     /**
-     * @param $startAIId
+     * @param $attackAIId
      */
-    public function createAttackCard($startAIId)
+    public function createAttackCard($attackAIId)
     {
         if($this->_attackCard == null){
             $this->_attackCard = array_pop($this->_cardList[GAME_CARD::DECK_CARD_KEY]);
-            $this->_attackCard->owner_ai_id = $startAIId;
+            $this->_attackCard->owner_ai_id = $attackAIId;
             $this->_attackCard->is_current_attack_card = true;
 
             $gameCards = TableRegistry::get('game_cards');

@@ -10,6 +10,7 @@ namespace App\Service;
 
 use App\Constant\ACTION_TYPE;
 use App\Constant\DATE_FORMAT;
+use App\Constant\JSON_KEY;
 use App\Constant\RESULT_CODE;
 use App\Model\Entity\GameTurn;
 use App\Model\Vo\CheckCurrentTurnResult;
@@ -20,11 +21,10 @@ use App\Model\Vo\ProcessMyTurnResult;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
+use Cake\ORM\Exception\MissingEntityException;
 use Cake\ORM\TableRegistry;
 
 class GameTurnService {
-
-
 
 
     /**
@@ -32,7 +32,6 @@ class GameTurnService {
      * @param $gameAiId
      * @param $currentCount
      * @param $canStay
-     * @param $turnStatusData
      * @return CreateTurnResult
      */
     public function createTurn($gameId,$gameAiId, $currentCount, $canStay)
@@ -129,6 +128,8 @@ class GameTurnService {
             $currentTurnRecord->turn_ended = date(DATE_FORMAT::READABLE_DATE);
             $nextTurnGameAIId = ($isSuccessAttack)?$gameAIId:$opponentGameAIId;
             $nextTurnCanStay = $isSuccessAttack;
+            //update card status
+            $currentCardStatusService = $gameCardService->getCurrentDistributedCards($gameId);
         //Stay
         }else{
             $currentTurnRecord->is_stay = true;
@@ -136,25 +137,26 @@ class GameTurnService {
             $currentTurnRecord->turn_ended = date(DATE_FORMAT::READABLE_DATE);
             $nextTurnGameAIId = $opponentGameAIId;
 
-            //Update Game Card.
+            //Update Previous Attack Card.
+            $gameCardService = new GameCardService();
+            $gameCardService->turnOffAttackCardForGame($gameId);
+            //todo : GameCard Serviceと GameCardStatusServiceは統合させる。
 
+            //Create New Attack Card
+            $currentCardStatusService = $gameCardService->getCurrentDistributedCards($gameId);
+            $currentCardStatusService->createAttackCard($nextTurnGameAIId);
 
         }
         $gameTurns->save($currentTurnRecord,['validate' => false]);
 
-        //update card status
-        $currentCardStatusService = $gameCardService->getCurrentDistributedCards($gameId);
-
-        //todo : Stay後 Attack カードをアップデートさせる。
-        //todo : GameCard Serviceと GameCardStatusServiceは統合させる。
-
 
         //Check game is over.
-        $winnerId = $currentCardStatusService->getWinningGameAIId();
-        $processMyTurnResult = new ProcessMyTurnResult(RESULT_CODE::SUCCESS);
-        $processMyTurnResult->setCurrentCardStatus($currentCardStatusService);
+        $winnerGameAIId = $currentCardStatusService->getWinningGameAIId();
+//        $processMyTurnResult = new ProcessMyTurnResult(RESULT_CODE::SUCCESS);
+//        $processMyTurnResult->setCurrentCardStatus($currentCardStatusService);
         //Winner does not Exists.
-        if($winnerId == 0){
+        $winnerInfo = [];
+        if($winnerGameAIId == 0){
             //Next Turn Record
             $nextTurnInfo = $this->createTurn($gameId,$nextTurnGameAIId,$nextTurnCurrentCount,$nextTurnCanStay,$currentCardStatusService);
 
@@ -163,9 +165,10 @@ class GameTurnService {
             $gameRecord->current_turn_id = $nextTurnInfo->getTurnId();
             $games->save($gameRecord);
         }else{
-            $processMyTurnResult->setWinnerAiId($winnerId);
+            //$processMyTurnResult->setWinnerGameAIId($winnerGameAIId);
+            $winnerInfo = [JSON_KEY::TURN_WINNER_AI_ID => $winnerGameAIId];
             $gameRecord->is_finished = true;
-            $gameRecord->win_ai_id = $winnerId;
+            $gameRecord->win_ai_id = $winnerGameAIId;
             $gameRecord->finshed_datetime = date(DATE_FORMAT::READABLE_DATE);
             $games->save($gameRecord);
         }
@@ -195,30 +198,53 @@ class GameTurnService {
 
     /**
      * @param $gameId
-     * @param $gameAiId
+     * @param $gameAIId
      * @return CheckCurrentTurnResult
+     * @throws \Psy\Exception\ErrorException
      */
-    public function checkCurrentTurn($gameId, $gameAiId)
+    public function checkCurrentTurn($gameId, $gameAIId)
     {
         //Game Info
         $gameEntity = (new GameService())->getGameEntity($gameId);
+        $gameTurnEntity = $gameEntity->current_game_turn;
+//        $gameTurnEntity = $gameEntity->game_
+//
+//        if($gameTurnEntity == null){
+//           return  new CheckCurrentTurnResult(RESULT_CODE::CHECK_CURRENT_TURN_FAILED);
+//        }
 
         //現在のカード情報
         $currentCardStatus = (new GameCardService())->getCurrentDistributedCards($gameId);
 
         //ターン履歴情報
-        $turnHistories = $this->getTurnHistoryResult($gameId,$gameAiId);
+        $turnHistories = $this->getTurnHistoryResult($gameId,$gameAIId);
         $isPreviousTurnProcessing = $this->isLockedForGameId($gameId);
         $checkCurrentTurnResult = new CheckCurrentTurnResult(RESULT_CODE::SUCCESS);
         $checkCurrentTurnResult->setGameEntity($gameEntity);
         $checkCurrentTurnResult->setCurrentCardStatus($currentCardStatus);
         $checkCurrentTurnResult->setGameTurnHistoriesResult($turnHistories);
-        $checkCurrentTurnResult->setGameAiId($gameAiId);
+        $checkCurrentTurnResult->setGameAiId($gameAIId);
         $checkCurrentTurnResult->setIsProcessing($isPreviousTurnProcessing);
-
+        $checkCurrentTurnResult->setWinnerGameAIId($gameEntity->win_ai_id);
+        if($gameTurnEntity != null)  $checkCurrentTurnResult->setCanStayThisTurn($gameTurnEntity->can_stay);
+        else $checkCurrentTurnResult->setCanStayThisTurn(false);
         //todo
         //Game 終了判定を追加
         return $checkCurrentTurnResult;
+    }
+
+    /**
+     * @param $gameTurnId
+     * @return \Cake\Datasource\EntityInterface|mixed
+     */
+    public function getGameTurnEntity($gameTurnId)
+    {
+        $gameTurns = TableRegistry::get('game_turns');
+        try {
+            return $gameTurns->get($gameTurnId);
+        }catch (MissingEntityException $e){
+            return null;
+        }
     }
 
     /**

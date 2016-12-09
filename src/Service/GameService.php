@@ -169,7 +169,7 @@ class GameService {
     public function getGameEntity($gameId)
     {
         $games = TableRegistry::get('games');
-        return $games->get($gameId);
+        return $games->get($gameId,['contain'=>['CurrentGameTurns']]);
 
     }
 

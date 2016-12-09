@@ -95,28 +95,18 @@ class ApisTestController extends AppController
 	}
 
 
-	public function testAttack()
-	{
-		$attackCardId = 19;
-		$targetCardId = 1;
-		$number = 0;
-		$gameAIId = 1;
-		$gameId = 1;
-		$turnId = 4;
-		$gameCardService = new GameCardService();
-		$result = $gameCardService->attack($gameAIId,$attackCardId,$targetCardId,$number);
-	}
+
 
 
 	public function testDoTurnAction()
 	{
-		$attackCardId = 23;
-		$targetCardId = 3;
-		$number = 5;
-		$gameAIId = 2;
+		$attackCardId = 11;
+		$targetCardId = 8;
+		$number = 11;
+		$gameAIId = 1;
 		$gameId = 1;
-		$turnId = 2;
-		$actionType = ACTION_TYPE::STAY;
+		$turnId = 7;
+		$actionType = ACTION_TYPE::ATTACK;
 		$gameTurnService = new GameTurnService();
 		$result = $gameTurnService->doTurnAction($gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
 		if($result->getCode() == RESULT_CODE::SUCCESS)

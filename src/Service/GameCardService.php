@@ -183,4 +183,12 @@ class GameCardService {
 
 
     }
+
+    /**
+     * @param $gameId
+     */
+    public function turnOffAttackCardForGame($gameId){
+        $gameCards = TableRegistry::get('game_cards');
+        $gameCards->updateAll(['is_current_attack_card'=>false],['game_id'=>$gameId]);
+    }
 }

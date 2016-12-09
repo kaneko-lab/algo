@@ -29,9 +29,13 @@ class RESULT_DESC {
 
             case RESULT_CODE::PROCESS_MY_TURN_FAILED_CANNOT_STAY: return "This turn you can't choice stay.";
 
-            case RESULT_CODE::PROCESS_MY_TURN_FAILED_NOT_VALID_ATTACK_CARD_ID: return "The card is not attack card.";
+            case RESULT_CODE::PROCESS_MY_TURN_FAILED_NOT_VALID_ATTACK_CARD_ID:return "The card is not attack card.";
 
-            case RESULT_CODE::PROCESS_MY_TURN_FAILED_INVALID_TURN_ID:return "The turn ID is is not valid";
+            case RESULT_CODE::PROCESS_MY_TURN_FAILED_INVALID_TURN_ID :return "The turn ID is is not valid";
+
+            case RESULT_CODE::CHECK_CURRENT_TURN_FAILED : return "Current turn check failed.";
+
+
             /*
             case RESULT_CODE::SUCCESS: return "Successfully finished your request.";
             case RESULT_CODE::SUCCESS: return "Successfully finished your request.";

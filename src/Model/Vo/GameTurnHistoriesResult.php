@@ -83,7 +83,8 @@ class GameTurnHistoriesResult extends Result{
                 'COUNT'=>$history->current_count,
                 'IS_FINISHED'=>boolval($history->is_finished),
                 'TURN_STARTED'=>$history->created->i18nFormat(Time::UNIX_TIMESTAMP_FORMAT),
-                'TURN_ENDED'=>$turnEndedTimestamp
+                //todo Create const for unknown data.
+                'TURN_ENDED'=>($turnEndedTimestamp == 0)?GAME_CARD::UNKNOWN:$turnEndedTimestamp
             );
         }
         return $data;
