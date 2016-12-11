@@ -128,7 +128,7 @@ class ApisController extends AppController
 	 * @param $groupId
 	 * @param $auth
 	 * @param $gameId
-	 * @param $aiId
+	 * @param $gameAIId
 	 * @param $turnId
 	 * @param $actionType
 	 * @param $attackCardId
@@ -138,11 +138,11 @@ class ApisController extends AppController
 
 	//Todo Add attack result to result parameter.
 
-	public function doTurnAction($groupId,$auth,$gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number)
+	public function doTurnAction($groupId,$auth,$gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number)
 	{
 		if(!$this->checkAuth($groupId,$auth))  return;
 		$gameTurnService = new GameTurnService();
-		$result = $gameTurnService->doTurnAction($gameId,$aiId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
+		$result = $gameTurnService->doTurnAction($gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
 		if($result->getCode() == RESULT_CODE::SUCCESS)
 			$this->returnData($result->getWellFormedData());
 		else
