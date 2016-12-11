@@ -62,14 +62,16 @@ class GameTurnService {
      */
     public function doTurnAction($gameId, $gameAIId, $turnId, $actionType, $attackCardId = 0, $targetCardId = 0, $targetCardNumber = 0 )
     {
-
+        $games = TableRegistry::get('games');
+        $gameRecord = $games->get($gameId,['contain'=>['CurrentGameTurns']]);
         $gameTurns = TableRegistry::get('game_turns');
+        $currentTurnRecord = $gameRecord->current_game_turn;
 
-        try {
-            $currentTurnRecord = $gameTurns->get($turnId);
-        }catch (RecordNotFoundException $e){
+
+        if(empty($currentTurnRecord) || $currentTurnRecord->id != $turnId)
             return new ProcessMyTurnResult(RESULT_CODE::PROCESS_MY_TURN_FAILED_INVALID_TURN_ID);
-        }
+
+
 
         //1.The turn is over.
         if($currentTurnRecord->is_finished)
@@ -97,8 +99,7 @@ class GameTurnService {
         }
 
         $this->createLockFile($gameId);
-        $games = TableRegistry::get('games');
-        $gameRecord = $games->get($gameId);
+
         $opponentGameAIId = ($gameRecord->team_a_ai_id == $gameAIId)?$gameRecord->team_b_ai_id:$gameRecord->team_a_ai_id;
         $nextTurnCanStay = false;
         $nextTurnCurrentCount = $currentTurnRecord->current_count + 1;
