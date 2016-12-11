@@ -33,8 +33,9 @@ class RESULT_DESC {
 
             case RESULT_CODE::PROCESS_MY_TURN_FAILED_INVALID_TURN_ID :return "The turn ID is is not valid";
 
-            case RESULT_CODE::CHECK_CURRENT_TURN_FAILED : return "Current turn check failed.";
+            case RESULT_CODE::CHECK_CURRENT_TURN_FAILED :return "Current turn check failed.";
 
+            case RESULT_CODE::PARAMETER_FAILED : return "Wrong parameters. check your parameters";
 
             /*
             case RESULT_CODE::SUCCESS: return "Successfully finished your request.";

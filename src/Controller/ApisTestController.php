@@ -38,10 +38,10 @@ use App\Model\Vo\GameTurnHistoriesResult;
  */
 class ApisTestController extends AppController
 {
-	private $teamAId = 2;
-	private $teamAAuth = "QW1zda@A12a";
-	private $teamBId = 3;
-	private $teamBAuth = "45@1lWXsiog1";
+	private $teamAId = 127;
+	private $teamAAuth = "XIDKE12sli11A";
+	private $teamBId = 231;
+	private $teamBAuth = "eXIaseig1@1sa";
 	public function initialize()
 	{
 		parent::initialize();
@@ -55,7 +55,9 @@ class ApisTestController extends AppController
 	}
 
 	/**
+	 *
 	 * Passed Tests.
+	 *
 	 */
 	public function testInitGame()
 	{

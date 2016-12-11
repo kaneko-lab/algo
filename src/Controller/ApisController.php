@@ -72,8 +72,12 @@ class ApisController extends AppController
 	 * @param $auth
 	 * @param $gameAICode
 	 */
-	public function initGame($groupId,$auth,$gameAICode)
+	public function initGame($groupId = null, $auth = null, $gameAICode = null)
 	{
+
+		if($groupId == null || $auth == null || $gameAICode == null)
+			return  $this->returnData((new Result(RESULT_CODE::PARAMETER_FAILED))->getResult());
+
 		// CHECK AUTH
 		if(!$this->checkAuth($groupId,$auth))  return;
 		$initGameResult = (new GameService())->initGame($groupId,$gameAICode);
@@ -93,8 +97,12 @@ class ApisController extends AppController
 	 *  - http://algo.local/Apis/checkMatching/1/QWEXQA12a/6/12/.json
 	 *
 	 */
-	public function checkMatching($groupId,$auth,$gameId,$gameAIId)
+	public function checkMatching($groupId=null,$auth=null,$gameId = null,$gameAIId = null)
 	{
+
+		if($groupId == null || $auth == null || $gameId == null || $gameAIId == null)
+			return  $this->returnData((new Result(RESULT_CODE::PARAMETER_FAILED))->getResult());
+
 		if(!$this->checkAuth($groupId,$auth))  return;
 		$checkMatchingResult = (new GameService())->checkMatching($groupId,$gameId,$gameAIId);
 
@@ -111,8 +119,11 @@ class ApisController extends AppController
 	 * @param $gameId
 	 * @param $gameAIId
 	 */
-	public function checkCurrentTurn($groupId,$auth,$gameId,$gameAIId)
+	public function checkCurrentTurn($groupId = null,$auth = null, $gameId = null, $gameAIId = null)
 	{
+		if($groupId == null || $auth == null || $gameId == null || $gameAIId == null)
+			return  $this->returnData((new Result(RESULT_CODE::PARAMETER_FAILED))->getResult());
+
 		if(!$this->checkAuth($groupId,$auth))  return;
 		$checkCurrentTurnResult = (new GameTurnService())->checkCurrentTurn($gameId,$gameAIId);
 		$this->returnData($checkCurrentTurnResult->getWellFormedData());
@@ -138,8 +149,12 @@ class ApisController extends AppController
 
 	//Todo Add attack result to result parameter.
 
-	public function doTurnAction($groupId,$auth,$gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number)
+	public function doTurnAction($groupId = null, $auth = null, $gameId = null, $gameAIId = null, $turnId = null, $actionType = null, $attackCardId = null, $targetCardId = null, $number = null)
 	{
+		if($groupId == null || $auth == null || $gameId == null || $gameAIId == null || $turnId == null ||  $actionType == null ||  $attackCardId == null ||  $targetCardId == null ||  $number == null)
+			return  $this->returnData((new Result(RESULT_CODE::PARAMETER_FAILED))->getResult());
+
+
 		if(!$this->checkAuth($groupId,$auth))  return;
 		$gameTurnService = new GameTurnService();
 		$result = $gameTurnService->doTurnAction($gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
