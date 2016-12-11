@@ -9,6 +9,9 @@
 namespace App\Model\Vo;
 
 
+use App\Constant\ALGO_CONST;
+use App\Constant\GAME_CARD;
+
 class CreateTurnResult extends Result {
     private $_turnData;
     private $_currentTurnId;
@@ -17,7 +20,11 @@ class CreateTurnResult extends Result {
 
     public function setTurnData($turnId, $turnData)
     {
-        $this->_currentTurnId = $turnId;
+        if($turnId < 1)
+            $this->_currentTurnId = ALGO_CONST::UNKNOWN;
+        else
+            $this->_currentTurnId = $turnId;
+
         $this->_turnData = $turnData;
     }
 

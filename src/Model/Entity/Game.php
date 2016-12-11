@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Entity;
 
+use App\Constant\ALGO_CONST;
 use Cake\ORM\Entity;
 
 /**
@@ -36,4 +37,12 @@ class Game extends Entity
         '*' => true,
         'id' => false
     ];
+
+    public function getCurrentTurnID(){
+        if($this->current_turn_id < 1)
+            return ALGO_CONST::UNKNOWN;
+        else
+            return $this->current_turn_id ;
+    }
 }
+

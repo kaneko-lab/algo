@@ -9,6 +9,7 @@
 namespace App\Service;
 
 
+use App\Constant\ALGO_CONST;
 use App\Constant\DATE_FORMAT;
 use App\Constant\MATCHING_TYPE;
 use App\Constant\RESULT_CODE;
@@ -125,34 +126,35 @@ class GameService {
      * 該当ゲームの両チームが揃ったらマッチング成功、揃ってなければ待機中を返す。
      * @param int $groupId
      * @param int $gameId
-     * @param int $gameAiId
+     * @param int $gameAIId
      * @return App\Model\Vo\CheckMatchingResult
      */
-    public function checkMatching($groupId,$gameId,$gameAiId)
+    public function checkMatching($groupId,$gameId,$gameAIId)
     {
         $games = TableRegistry::get('games');
         $record = $games->get($gameId);
 
         if($record->team_a_group_id != $groupId && $record->team_b_group_id != $groupId)
         {
-            return new CheckMatchingResult(RESULT_CODE::MATCHING_INVALID_GROUP_ID,$gameAiId);
+            return new CheckMatchingResult(RESULT_CODE::MATCHING_INVALID_GROUP_ID,$gameAIId);
         }
 
-        if($record->team_a_ai_id != $gameAiId && $record->team_b_ai_id != $gameAiId)
-            return new CheckMatchingResult(RESULT_CODE::MATCHING_INVALID_AI_ID,$gameAiId);
+        if($record->team_a_ai_id != $gameAIId && $record->team_b_ai_id != $gameAIId)
+            return new CheckMatchingResult(RESULT_CODE::MATCHING_INVALID_AI_ID,$gameAIId);
 
         if($record->team_a_group_id != 0 && $record->team_b_group_id != 0 ){
-            $checkMatchingResult = new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAiId);
+            $checkMatchingResult = new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAIId);
             $checkMatchingResult->setIsFinishedMatching(true);
-            $checkMatchingResult->setIsMyTurn(($record->current_ai_id == $gameAiId));
-            $checkMatchingResult->setTurnId($record->current_turn_id);
+            $checkMatchingResult->setIsMyTurn(($record->current_ai_id == $gameAIId));
+            $checkMatchingResult->setTurnId($record->getCurrentTurnID());
             $checkMatchingResult->setCardLists((new GameCardService())->getCurrentDistributedCards($gameId));
             return $checkMatchingResult;
 
         }else{
 
-            $checkMatchingResult = new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAiId);
+            $checkMatchingResult = new CheckMatchingResult(RESULT_CODE::SUCCESS,$gameAIId);
             $checkMatchingResult->setIsFinishedMatching(false);
+            $checkMatchingResult->setTurnId(ALGO_CONST::UNKNOWN);
             return $checkMatchingResult;
         }
     }

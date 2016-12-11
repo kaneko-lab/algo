@@ -8,6 +8,8 @@
 
 namespace App\Model\Vo;
 
+use App\Constant\ALGO_CONST;
+use App\Constant\GAME_CARD;
 use App\Constant\JSON_KEY;
 use App\Constant\RESULT_DESC;
 use App\Service\CurrentCardStatusService;
@@ -23,7 +25,7 @@ class CheckMatchingResult extends Result{
     private $_cardDistributeStatus;
 
 
-    public function __construct($resultCode,$myAiId)
+    public function  __construct($resultCode,$myAiId)
     {
         $this->_resultCode = $resultCode;
         $this->_resultDesc = RESULT_DESC::get($resultCode);
@@ -51,7 +53,12 @@ class CheckMatchingResult extends Result{
 
     public function setTurnId($turnId)
     {
-        $this->_turnId = $turnId;
+        if($turnId < 1)
+            $this->_turnId = ALGO_CONST::UNKNOWN;
+        else
+            $this->_turnId = $turnId;
+
+
     }
 
 

@@ -10,6 +10,7 @@
 namespace App\Service;
 
 
+use App\Constant\ALGO_CONST;
 use App\Constant\GAME_CARD;
 use App\Model\Entity\GameCard;
 use App\Service\GameCardService;
@@ -166,7 +167,7 @@ class CurrentCardStatusService {
     private function getCardArray(GameCard $gameCard, $isVisibleForMe){
        return array(
             'ID'=>$gameCard->id,
-            'NUMBER'=>($isVisibleForMe)?$gameCard->card->number:GAME_CARD::UNKNOWN,
+            'NUMBER'=>($isVisibleForMe)?$gameCard->card->number:ALGO_CONST::UNKNOWN,
             'COLOR'=>$gameCard->card->color,
             'VISIBLE'=>boolval($gameCard->is_visible));
     }

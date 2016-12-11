@@ -19,6 +19,7 @@ use App\Model\Vo\Result;
 use App\Model\Vo\CheckMatchingResult;
 use App\Service\AuthService;
 use App\Service\GameService;
+use App\Service\GameTurnService;
 use Cake\Event\Event;
 use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;

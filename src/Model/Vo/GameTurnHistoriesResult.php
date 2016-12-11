@@ -9,6 +9,7 @@
 namespace App\Model\Vo;
 
 
+use App\Constant\ALGO_CONST;
 use App\Constant\GAME_CARD;
 use Cake\I18n\Time;
 class GameTurnHistoriesResult extends Result{
@@ -63,8 +64,8 @@ class GameTurnHistoriesResult extends Result{
             if(!empty($history->target_game_card)){
                 $tgtCardInfo=[
                     'GAME_CARD_ID'=>$history->target_game_card->id,
-                    'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:GAME_CARD::UNKNOWN,
-                    'NUMBER' =>($history->is_success_attack||$this->_isAdmin)?GAME_CARD::getNumber($history->target_game_card->id):GAME_CARD::UNKNOWN,
+                    'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:ALGO_CONST::UNKNOWN,
+                    'NUMBER' =>($history->is_success_attack||$this->_isAdmin)?GAME_CARD::getNumber($history->target_game_card->id):ALGO_CONST::UNKNOWN,
                     'COLOR'  =>GAME_CARD::getColor($history->target_game_card->id),
                 ];
             }
@@ -83,8 +84,7 @@ class GameTurnHistoriesResult extends Result{
                 'COUNT'=>$history->current_count,
                 'IS_FINISHED'=>boolval($history->is_finished),
                 'TURN_STARTED'=>$history->created->i18nFormat(Time::UNIX_TIMESTAMP_FORMAT),
-                //todo Create const for unknown data.
-                'TURN_ENDED'=>($turnEndedTimestamp == 0)?GAME_CARD::UNKNOWN:$turnEndedTimestamp
+                'TURN_ENDED'=>($turnEndedTimestamp == 0)?ALGO_CONST::UNKNOWN:$turnEndedTimestamp
             );
         }
         return $data;
