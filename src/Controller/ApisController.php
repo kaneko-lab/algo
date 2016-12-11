@@ -121,7 +121,7 @@ class ApisController extends AppController
 	/**
 	 * 自分のTurnのアクションを行う。
 	 * ATTACK もしくは STAYが可能
-	 * STAYは以前のTURNでかなるざATTACKが成功した必要がある。
+	 * STAYは以前のTURNでかなるざATTACKが成功した必要がある。3
 	 * Turn終了後の情報を得ることができる。
 	 */
 	/**

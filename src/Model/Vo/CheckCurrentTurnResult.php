@@ -37,7 +37,10 @@ class CheckCurrentTurnResult extends Result
 
     public function setWinnerGameAIId($winnerGameAIId)
     {
-        $this->_winnerGameAIId = $winnerGameAIId;
+        if($winnerGameAIId == 0)
+            $this->_winnerGameAIId = ALGO_CONST::UNKNOWN;
+        else
+            $this->_winnerGameAIId = $winnerGameAIId;
     }
 
     public function setGameEntity($gameEntity)
@@ -56,7 +59,7 @@ class CheckCurrentTurnResult extends Result
         $this->_isProcessing = $isProcessing;
     }
 
-    public function setGameAiId($gameAiId)
+    public function setGameAIId($gameAiId)
     {
         $this->_gameAiId = $gameAiId;
     }

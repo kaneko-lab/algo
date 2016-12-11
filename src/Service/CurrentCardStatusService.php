@@ -20,7 +20,7 @@ class CurrentCardStatusService {
 
     private $_cardList=[];
     private $_attackCard = null;
-    private $_aiIds=[];
+    private $_gameAIIds=[];
     private $_numCurrentCard = 0;
     /**
      * @param $gameAIId
@@ -28,6 +28,11 @@ class CurrentCardStatusService {
      */
     public function addCard($gameAIId, GameCard $gameCard){
         $this->_numCurrentCard ++;
+
+        if(!in_array($gameAIId,$this->_gameAIIds) && $gameAIId > 0 ){
+
+            $this->_gameAIIds[]=$gameAIId;
+        }
 
         if($this->_numCurrentCard > GAME_CARD::MAX_CARD_NUM){
             throw new \OutOfRangeException("Current game card exceed max num. Game card id" + $gameCard->id);
@@ -49,6 +54,7 @@ class CurrentCardStatusService {
 
 
 
+
     }
 
     /**
@@ -62,7 +68,7 @@ class CurrentCardStatusService {
             $this->_attackCard->is_current_attack_card = true;
 
             $gameCards = TableRegistry::get('game_cards');
-            $gameCards->save($this->_attackCard);
+            $gameCards->save($this->_attackCard,['validate'=>false]);
 
         }
     }
@@ -198,7 +204,7 @@ class CurrentCardStatusService {
     public function getWinningGameAIId()
     {
         $visibleCounterForAiIds = array();
-        foreach ($this->_aiIds as $aiId ){
+        foreach ($this->_gameAIIds as $aiId ){
             //Do not sort deck list.
             $visibleCounterForAiIds[$aiId] = 0;
             $allCardIsVisible = true;
@@ -212,7 +218,7 @@ class CurrentCardStatusService {
 
             //$aiId is lose
             if($allCardIsVisible){
-                $aiIdCopy = $this->_aiIds;
+                $aiIdCopy = $this->_gameAIIds;
                 unset($aiIdCopy[$aiId]);
                 return (int) array_pop($aiIdCopy);
             }
@@ -220,9 +226,9 @@ class CurrentCardStatusService {
 
         //No more cards.
         if(count($this->_cardList[GAME_CARD::DECK_CARD_KEY]) == 0 ){
-            return ($visibleCounterForAiIds[$this->_aiIds[0]] > $visibleCounterForAiIds[$this->_aiIds[1]])?$this->_aiIds[0]:$this->_aiIds[1];
+            return ($visibleCounterForAiIds[$this->_gameAIIds[0]] > $visibleCounterForAiIds[$this->_gameAIIds[1]])?$this->_gameAIIds[0]:$this->_gameAIIds[1];
         }
-        return 0;
+        return ALGO_CONST::UNKNOWN;
     }
 
 }

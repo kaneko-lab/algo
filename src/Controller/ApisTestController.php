@@ -100,12 +100,12 @@ class ApisTestController extends AppController
 
 	public function testDoTurnAction()
 	{
-		$attackCardId = 11;
-		$targetCardId = 8;
-		$number = 11;
+		$attackCardId = 16;
+		$targetCardId = 7;
+		$number = 0;
 		$gameAIId = 1;
 		$gameId = 1;
-		$turnId = 7;
+		$turnId = 1;
 		$actionType = ACTION_TYPE::ATTACK;
 		$gameTurnService = new GameTurnService();
 		$result = $gameTurnService->doTurnAction($gameId,$gameAIId,$turnId,$actionType,$attackCardId,$targetCardId,$number);
@@ -119,7 +119,7 @@ class ApisTestController extends AppController
 	public function testCheckCurrentTurn()
 	{
 		$gameId = 1;
-		$gameAIId = 1;
+		$gameAIId = 2;
 		$checkCurrentTurnResult = (new GameTurnService())->checkCurrentTurn($gameId,$gameAIId);
 		$this->returnData($checkCurrentTurnResult->getWellFormedData());
 	}

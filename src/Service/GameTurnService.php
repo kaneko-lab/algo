@@ -9,6 +9,7 @@
 namespace App\Service;
 
 use App\Constant\ACTION_TYPE;
+use App\Constant\ALGO_CONST;
 use App\Constant\DATE_FORMAT;
 use App\Constant\JSON_KEY;
 use App\Constant\RESULT_CODE;
@@ -116,7 +117,7 @@ class GameTurnService {
 
         //5. Process  turn
         //Check stay or attack
-
+        $winnerGameAIId = ALGO_CONST::UNKNOWN;
         if($actionType == ACTION_TYPE::ATTACK){
             //Do attack
             $gameCardService = new GameCardService();
@@ -130,7 +131,23 @@ class GameTurnService {
             $nextTurnCanStay = $isSuccessAttack;
             //update card status
             $currentCardStatusService = $gameCardService->getCurrentDistributedCards($gameId);
-        //Stay
+            if($isSuccessAttack){
+                //Check game is over.
+                $winnerGameAIId = $currentCardStatusService->getWinningGameAIId();
+                //Game Finished
+                if($winnerGameAIId != ALGO_CONST::UNKNOWN){
+                    $gameRecord->win_ai_id = $winnerGameAIId;
+                    $gameRecord->is_finished = true;
+                    $gameRecord->fisnied_datetime = date(DATE_FORMAT::READABLE_DATE);
+                    $games->save($gameRecord,['validate'=>false]);
+                }else{
+                    $currentCardStatusService->createAttackCard($nextTurnGameAIId);
+                }
+            }
+
+
+
+            //Stay
         }else{
             $currentTurnRecord->is_stay = true;
             $currentTurnRecord->is_success_attack = false;
@@ -150,26 +167,15 @@ class GameTurnService {
         $gameTurns->save($currentTurnRecord,['validate' => false]);
 
 
-        //Check game is over.
-        $winnerGameAIId = $currentCardStatusService->getWinningGameAIId();
-//        $processMyTurnResult = new ProcessMyTurnResult(RESULT_CODE::SUCCESS);
-//        $processMyTurnResult->setCurrentCardStatus($currentCardStatusService);
         //Winner does not Exists.
-        $winnerInfo = [];
-        if($winnerGameAIId == 0){
+        //Create Next Turn.
+        if($winnerGameAIId == ALGO_CONST::UNKNOWN){
             //Next Turn Record
             $nextTurnInfo = $this->createTurn($gameId,$nextTurnGameAIId,$nextTurnCurrentCount,$nextTurnCanStay,$currentCardStatusService);
 
             //Update current game record.
             $gameRecord->current_ai_id = $nextTurnGameAIId;
             $gameRecord->current_turn_id = $nextTurnInfo->getTurnId();
-            $games->save($gameRecord);
-        }else{
-            //$processMyTurnResult->setWinnerGameAIId($winnerGameAIId);
-            $winnerInfo = [JSON_KEY::TURN_WINNER_AI_ID => $winnerGameAIId];
-            $gameRecord->is_finished = true;
-            $gameRecord->win_ai_id = $winnerGameAIId;
-            $gameRecord->finshed_datetime = date(DATE_FORMAT::READABLE_DATE);
             $games->save($gameRecord);
         }
 
@@ -181,17 +187,17 @@ class GameTurnService {
 
     /**
      * @param $gameId
-     * @param $gameAiId
+     * @param $gameAIId
      * @return GameTurnHistoriesResult
      */
-    public function getTurnHistoryResult($gameId,$gameAiId)
+    public function getTurnHistoryResult($gameId,$gameAIId)
     {
         $gameTurns = TableRegistry::get('game_turns');
         $turnHistories = $gameTurns->find()->where(['game_turns.game_id'=>$gameId])->order(['game_turns.id'])->contain(['TargetGameCards','AttackGameCards'])->all();
         $gameTurnHistoriesResult = new GameTurnHistoriesResult(RESULT_CODE::SUCCESS);
         $gameTurnHistoriesResult->setHistories($turnHistories);
         $gameTurnHistoriesResult->setGameId($gameId);
-        $gameTurnHistoriesResult->setGameAiId($gameAiId);
+        $gameTurnHistoriesResult->setGameAIId($gameAIId);
         return $gameTurnHistoriesResult;
     }
 
@@ -223,7 +229,7 @@ class GameTurnService {
         $checkCurrentTurnResult->setGameEntity($gameEntity);
         $checkCurrentTurnResult->setCurrentCardStatus($currentCardStatus);
         $checkCurrentTurnResult->setGameTurnHistoriesResult($turnHistories);
-        $checkCurrentTurnResult->setGameAiId($gameAIId);
+        $checkCurrentTurnResult->setGameAIId($gameAIId);
         $checkCurrentTurnResult->setIsProcessing($isPreviousTurnProcessing);
         $checkCurrentTurnResult->setWinnerGameAIId($gameEntity->win_ai_id);
         if($gameTurnEntity != null)  $checkCurrentTurnResult->setCanStayThisTurn($gameTurnEntity->can_stay);

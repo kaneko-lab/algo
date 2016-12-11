@@ -14,7 +14,7 @@ use App\Constant\GAME_CARD;
 use Cake\I18n\Time;
 class GameTurnHistoriesResult extends Result{
     private $_gameId;
-    private $_gameAiId;
+    private $_gameAIId;
     private $_histories = [];
     private $_isAdmin;
 
@@ -31,9 +31,9 @@ class GameTurnHistoriesResult extends Result{
     /**
      * @param $gameAiId
      */
-    public function setGameAiId($gameAiId)
+    public function setGameAIId($gameAiId)
     {
-        $this->_gameAiId = $gameAiId;
+        $this->_gameAIId = $gameAiId;
     }
 
     public function setHistories($histories)
@@ -52,20 +52,34 @@ class GameTurnHistoriesResult extends Result{
         foreach($this->_histories as $history){
             $atkCardInfo=[];
             if(!empty($history->attack_game_card)){
+                $attackNumber = GAME_CARD::getNumber($history->attack_game_card->id);
+
+                //unvisible card for $current Game AI
+                if(($this->_gameAIId != $history->game_ai_id)&&
+                    ($history->is_success_attack || $history->is_stay))
+                    $attackNumber = ALGO_CONST::UNKNOWN;
+
                 $atkCardInfo =[
                     'GAME_CARD_ID'=>$history->attack_game_card->id,
-                    'CARD_ID'=>$history->attack_game_card->card_id,
-                    'NUMBER' =>GAME_CARD::getNumber($history->attack_game_card->id),
+                    'NUMBER' => $attackNumber,
+                    //'CARD_ID'=>$history->attack_game_card->card_id,
                     'COLOR'  =>GAME_CARD::getColor($history->attack_game_card->id),
                 ];
             }
 
             $tgtCardInfo=[];
             if(!empty($history->target_game_card)){
+                $targetNumber  = GAME_CARD::getNumber($history->target_game_card->id);
+
+                //unvisible card for current Game AI
+                if(($this->_gameAIId == $history->game_ai_id) &&
+                    (!$history->is_success_attack))
+                    $targetNumber = ALGO_CONST::UNKNOWN;
+
                 $tgtCardInfo=[
                     'GAME_CARD_ID'=>$history->target_game_card->id,
-                    'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:ALGO_CONST::UNKNOWN,
-                    'NUMBER' =>($history->is_success_attack||$this->_isAdmin)?GAME_CARD::getNumber($history->target_game_card->id):ALGO_CONST::UNKNOWN,
+                    //'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:ALGO_CONST::UNKNOWN,
+                    'NUMBER' =>$targetNumber,
                     'COLOR'  =>GAME_CARD::getColor($history->target_game_card->id),
                 ];
             }

@@ -147,7 +147,11 @@ class GameService {
             $checkMatchingResult->setIsFinishedMatching(true);
             $checkMatchingResult->setIsMyTurn(($record->current_ai_id == $gameAIId));
             $checkMatchingResult->setTurnId($record->getCurrentTurnID());
-            $checkMatchingResult->setCardLists((new GameCardService())->getCurrentDistributedCards($gameId));
+
+            $gameCardService = new GameCardService();
+            $gameCardCurrentStatus = $gameCardService->getCurrentDistributedCards($gameId);
+            $gameCardCurrentStatus->createAttackCard($gameAIId);
+            $checkMatchingResult->setCardLists($gameCardCurrentStatus);
             return $checkMatchingResult;
 
         }else{
