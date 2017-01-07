@@ -52,16 +52,16 @@ class GameTurnHistoriesResult extends Result{
         foreach($this->_histories as $history){
             $atkCardInfo=[];
             if(!empty($history->attack_game_card)){
-                $attackNumber = GAME_CARD::getNumber($history->attack_game_card->id);
+                $attackCardNumber = GAME_CARD::getNumber($history->attack_game_card->id);
 
                 //unvisible card for $current Game AI
                 if(($this->_gameAIId != $history->game_ai_id)&&
                     ($history->is_success_attack || $history->is_stay))
-                    $attackNumber = ALGO_CONST::UNKNOWN;
+                    $attackCardNumber = ALGO_CONST::UNKNOWN;
 
                 $atkCardInfo =[
                     'GAME_CARD_ID'=>$history->attack_game_card->id,
-                    'NUMBER' => $attackNumber,
+                    'NUMBER' => $attackCardNumber,
                     //'CARD_ID'=>$history->attack_game_card->card_id,
                     'COLOR'  =>GAME_CARD::getColor($history->attack_game_card->id),
                 ];
@@ -69,17 +69,17 @@ class GameTurnHistoriesResult extends Result{
 
             $tgtCardInfo=[];
             if(!empty($history->target_game_card)){
-                $targetNumber  = GAME_CARD::getNumber($history->target_game_card->id);
+                $targetCardNumber  = GAME_CARD::getNumber($history->target_game_card->id);
 
                 //unvisible card for current Game AI
                 if(($this->_gameAIId == $history->game_ai_id) &&
                     (!$history->is_success_attack))
-                    $targetNumber = ALGO_CONST::UNKNOWN;
+                    $targetCardNumber = ALGO_CONST::UNKNOWN;
 
                 $tgtCardInfo=[
                     'GAME_CARD_ID'=>$history->target_game_card->id,
                     //'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:ALGO_CONST::UNKNOWN,
-                    'NUMBER' =>$targetNumber,
+                    'NUMBER' =>$targetCardNumber,
                     'COLOR'  =>GAME_CARD::getColor($history->target_game_card->id),
                 ];
             }
@@ -92,11 +92,13 @@ class GameTurnHistoriesResult extends Result{
                 'ACTION_CODE'=>$history->turn_action_code,
                 'ATK_CARD'=>$atkCardInfo,
                 'TGT_CARD'=>$tgtCardInfo,
+                'TGT_NUMBER'=>$history->target_number,
                 'CAN_STAY'=>boolval($history->can_stay),
                 'IS_STAY'=>boolval($history->is_stay),
                 'IS_SUCCESS_ATK'=>boolval($history->is_success_attack),
                 'COUNT'=>$history->current_count,
                 'IS_FINISHED'=>boolval($history->is_finished),
+
                 'TURN_STARTED'=>$history->created->i18nFormat(Time::UNIX_TIMESTAMP_FORMAT),
                 'TURN_ENDED'=>($turnEndedTimestamp == 0)?ALGO_CONST::UNKNOWN:$turnEndedTimestamp
             );
