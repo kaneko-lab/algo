@@ -118,9 +118,6 @@ class GamesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['team_a_group_id'], 'Groups'));
-        $rules->add($rules->existsIn(['team_b_group_id'], 'Groups'));
-        $rules->add($rules->existsIn(['win_group_id'], 'Groups'));
 
         return $rules;
     }
