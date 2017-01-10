@@ -43,16 +43,32 @@ class GamesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Groups', [
+        $this->belongsTo('AGroups', [
+            'className' => 'Groups',
             'foreignKey' => 'team_a_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Groups', [
+        $this->belongsTo('BGroups', [
+            'className' => 'Groups',
             'foreignKey' => 'team_b_group_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Groups', [
-            'foreignKey' => 'win_group_id',
+
+        $this->belongsTo('AGroupAis', [
+            'className' => 'GameAis',
+            'foreignKey' => 'team_a_ai_id',
+            'joinType' => 'INNER'
+        ]);
+
+        $this->belongsTo('BGroupAis', [
+            'className' => 'GameAis',
+            'foreignKey' => 'team_b_ai_id',
+            'joinType' => 'INNER'
+        ]);
+
+        $this->belongsTo('WinAis', [
+            'className' => 'GameAis',
+            'foreignKey' => 'win_ai_id',
             'joinType' => 'INNER'
         ]);
 
@@ -61,6 +77,7 @@ class GamesTable extends Table
             'foreignKey'=>'current_turn_id',
             'joinType'=>'INNER'
         ]);
+
         $this->hasMany('GameTurns', [
             'foreignKey' => 'game_id'
         ]);
