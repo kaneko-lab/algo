@@ -65,6 +65,7 @@ class GameCardService {
         //次の4枚をBチームへ
         //残りはすべて山へ、
 
+
         $gameCards = TableRegistry::get('game_cards');
 
 
@@ -116,8 +117,7 @@ class GameCardService {
                     ->find('all')
                     ->where(['game_id ' => $gameId])
                     ->contain(['Cards'])
-                    ->order('Cards.order');
-
+                    ->order('game_cards.id');
         if($query->count()==0){
             return null;
         }else{
