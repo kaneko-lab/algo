@@ -52,9 +52,14 @@ class CurrentCardStatusService {
             $this->_cardList[$gameAIId][$gameCard->card->order] = $gameCard;
         }
 
+    }
 
-
-
+    public function sortCard(){
+        foreach($this->_cardList as $aiId => $cardList){
+            if($aiId == 0) continue;//do not sort deck
+            ksort($cardList);
+            $this->_cardList[$aiId]=$cardList;
+        }
     }
 
     /**

@@ -130,6 +130,8 @@ class GameCardService {
             foreach($query as $row){
                 $currentCardStatusService->addCard($row->owner_ai_id ,$row);
             }
+            //Card SORT
+            $currentCardStatusService->sortCard();
             return $currentCardStatusService;
         }
     }
