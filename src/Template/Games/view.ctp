@@ -31,9 +31,40 @@
 <!--        <td>--><?php //echo $game['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');?><!--</td>-->
 <!--        <td>--><?php //echo $game['current_game_turn']['current_count'];?><!--</td>-->
 <!--        <td>--><?php //echo ($game['is_finished']==1)?"Finished":"Playing";?><!--</td>-->
+        <?php endforeach?>
+
     </tr>
+</table>
 
-<?php endforeach?>
 
+<table>
+    <tr>
+        <th>CARD_ID</th><th>NUMBER</th><th>COLOR</th><th>OWNER AI</th><th>VISIBLE</th>
+    </tr>
+    <?php
+    $i = 0;
+    $cardList = $gameCards->getCardList();
+    foreach($cardList as $aiId => $gameCards):
+        foreach($gameCards as $gameCard):
+        $i++;
+
+    ?>
+
+
+    <?php if($i%2==0):?><tr style="background-color:lightcyan">
+    <?php else: ?><tr style="background-color:white"><?php endif;?>
+        <td><?php echo $gameCard['id']?></td>
+        <td><?php echo $gameCard->card->number?></td>
+
+        <td><?php echo $gameCard->card->color?></td>
+
+        <td><?php echo $gameCard['owner_ai_id']?></td>
+        <td><?php echo ($gameCard['is_visible']==1)?"YES":"NO";?></td>
+        <?php endforeach?>
+        <?php endforeach?>
+
+        </tr>
+
+</table>
 
 

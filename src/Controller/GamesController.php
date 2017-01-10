@@ -14,6 +14,7 @@
  */
 namespace App\Controller;
 
+use App\Service\GameCardService;
 use App\Service\GameTurnService;
 use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
@@ -47,7 +48,9 @@ class GamesController extends AppController
 
     public function view($gameId){
         $gameTurns = (new GameTurnService())->getTurnHistoryResultForWatching($gameId);
+        $gameCards = (new GameCardService())->getCurrentDistributedCards($gameId);
         $this->set('gameTurns',$gameTurns);
+        $this->set('gameCards',$gameCards);
 
     }
 }
