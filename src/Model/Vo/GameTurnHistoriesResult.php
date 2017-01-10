@@ -94,7 +94,7 @@ class GameTurnHistoriesResult extends Result{
                 'ACTION_CODE'=>$history->turn_action_code,
                 'ATK_CARD'=>$atkCardInfo,
                 'TGT_CARD'=>$tgtCardInfo,
-                'TGT_NUMBER'=>($history->target_number == null)?-1:$history->target_number,
+                'TGT_NUMBER'=>($history->target_number === null)?-1:$history->target_number,
                 'CAN_STAY'=>boolval($history->can_stay),
                 'IS_STAY'=>boolval($history->is_stay),
                 'IS_SUCCESS_ATK'=>boolval($history->is_success_attack),
