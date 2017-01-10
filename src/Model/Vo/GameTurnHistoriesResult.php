@@ -52,10 +52,12 @@ class GameTurnHistoriesResult extends Result{
         foreach($this->_histories as $history){
             $atkCardInfo=[];
             if(!empty($history->attack_game_card)){
-                $attackCardNumber = GAME_CARD::getNumber($history->attack_game_card->id);
+                $attackCardNumber = GAME_CARD::getNumber($history->attack_game_card->card_id);
 
                 //unvisible card for $current Game AI
-                if(($this->_gameAIId != $history->game_ai_id)&&
+                if(
+                    !$this->_isAdmin &&
+                    ($this->_gameAIId != $history->game_ai_id)&&
                     ($history->is_success_attack || $history->is_stay))
                     $attackCardNumber = ALGO_CONST::UNKNOWN;
 
@@ -69,10 +71,10 @@ class GameTurnHistoriesResult extends Result{
 
             $tgtCardInfo=[];
             if(!empty($history->target_game_card)){
-                $targetCardNumber  = GAME_CARD::getNumber($history->target_game_card->id);
-
+                $targetCardNumber  = GAME_CARD::getNumber($history->target_game_card->card_id);
                 //unvisible card for current Game AI
-                if(($this->_gameAIId == $history->game_ai_id) &&
+                if( !$this->_isAdmin &&
+                    ($this->_gameAIId == $history->game_ai_id) &&
                     (!$history->is_success_attack))
                     $targetCardNumber = ALGO_CONST::UNKNOWN;
 
