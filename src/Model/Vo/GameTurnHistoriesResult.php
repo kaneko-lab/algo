@@ -82,7 +82,7 @@ class GameTurnHistoriesResult extends Result{
                     'GAME_CARD_ID'=>$history->target_game_card->id,
                     //'CARD_ID'=>($history->is_success_attack||$this->_isAdmin)?$history->target_game_card->card_id:ALGO_CONST::UNKNOWN,
                     'NUMBER' =>$targetCardNumber,
-                    'COLOR'  =>GAME_CARD::getColor($history->target_game_card->id),
+                    'COLOR'  =>GAME_CARD::getColor($history->target_game_card->card_id),
                 ];
             }
 
