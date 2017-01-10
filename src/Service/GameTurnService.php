@@ -192,6 +192,22 @@ class GameTurnService {
         return $gameTurnHistoriesResult;
     }
 
+    /**
+     * @param $gameId
+     * @return GameTurnHistoriesResult
+     */
+    public function getTurnHistoryResultForWatching($gameId)
+    {
+        $gameTurns = TableRegistry::get('game_turns');
+        $turnHistories = $gameTurns->find()->where(['game_turns.game_id'=>$gameId])->order(['game_turns.id'])->contain(['TargetGameCards','AttackGameCards'])->all();
+        $gameTurnHistoriesResult = new GameTurnHistoriesResult(RESULT_CODE::SUCCESS);
+        $gameTurnHistoriesResult->setHistories($turnHistories);
+        $gameTurnHistoriesResult->setGameId($gameId);
+        //$gameTurnHistoriesResult->setGameAIId($gameAIId);
+        $gameTurnHistoriesResult->setIsAdmin(true);
+        return $gameTurnHistoriesResult;
+    }
+
 
     /**
      * @param $gameId

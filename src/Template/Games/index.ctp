@@ -22,7 +22,7 @@
 ?>
         <?php if($i%2==0):?><tr style="background-color:lightcyan">
         <?php else: ?><tr style="background-color:white"><?php endif;?>
-        <td><?php echo $game['id']?></td>
+        <td><a href="/Games/view/<?=$game->id?>"><?php echo $game['id']?></a></td>
         <td><?php echo $game['a_group']['name']?></td>
         <td><?php echo $game['b_group']['name']?></td>
         <td><?php echo $game['a_group_ai']['name'].":".$game['a_group_ai']['id']?></td>

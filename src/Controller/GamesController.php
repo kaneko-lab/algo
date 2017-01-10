@@ -14,6 +14,7 @@
  */
 namespace App\Controller;
 
+use App\Service\GameTurnService;
 use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
@@ -44,4 +45,9 @@ class GamesController extends AppController
     }
 
 
+    public function view($gameId){
+        $gameTurns = (new GameTurnService())->getTurnHistoryResultForWatching($gameId);
+        $this->set('gameTurns',$gameTurns);
+
+    }
 }
