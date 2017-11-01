@@ -89,8 +89,8 @@ class ApisTestController extends AppController
 	 */
 	public function testCheckMatching($gameAIId)
 	{
-		$groupId = 2;
-		$gameId = 1;
+		$groupId = 127;
+		$gameId = 1520;
 		$checkMatchingResult = (new GameService())->checkMatching($groupId,$gameId,$gameAIId);
 		$this->returnData($checkMatchingResult->getResult());
 
