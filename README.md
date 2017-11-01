@@ -68,6 +68,7 @@ Made with Cakephp 3
 
 ## 対戦状況確認
  - Path : /Games  
- 
+ ！[overview image](https://github.com/kaneko-lab/algo/blob/master/documents/Details.png)
+
 
 
