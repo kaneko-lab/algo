@@ -110,8 +110,11 @@ class GameTurnService {
         //攻撃カードの検証およびターゲットカードの検証
         //Get Card Status
         $gameCardService = new GameCardService();
-        if(!$gameCardService->validateAttackCard($attackCardId)){
-            return new ProcessMyTurnResult(RESULT_CODE::PROCESS_MY_TURN_FAILED_NOT_VALID_ATTACK_CARD_ID);
+
+        if($actionType == ACTION_TYPE::ATTACK){
+            if(!$gameCardService->validateAttackCard($attackCardId)){
+                return new ProcessMyTurnResult(RESULT_CODE::PROCESS_MY_TURN_FAILED_NOT_VALID_ATTACK_CARD_ID);
+            }
         }
 
 

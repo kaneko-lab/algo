@@ -99,7 +99,19 @@ class ApisTestController extends AppController
 
 
 
+	//	public function doTurnAction($groupId = null, $auth = null, $gameId = null, $gameAIId = null, $turnId = null, $actionType = null, $attackCardId = null, $targetCardId = null, $number = null)
 
+    // Group ID = 234
+    // auth = xxxeXIaseig1@1sa
+    // gameId = 3330
+    // $gameAIId = 6654
+    // $turnId = 33249
+    // $actionType = STAY
+    // $attackCardId = -1
+    // $targetCardId = -1
+    // $number = -1
+
+    //http://algo.kaneko-lab.net/Apis/doTurnAction/234/xxxeXIaseig1@1sa/3330/6654/33249/STAY/-1/-1/-1.json
 	public function testDoTurnAction()
 	{
 		$attackCardId = 16;
