@@ -14,8 +14,12 @@
 
         <td><?php echo $game['AI_ID']?></td>
         <td><?php echo $game['ACTION_CODE']?></td>
-        <td><?php echo ($game['ATK_CARD']['COLOR'].":".$game['ATK_CARD']['NUMBER'])?></td>
-        <td><?php echo ($game['TGT_CARD']['COLOR'].":".$game['TGT_CARD']['NUMBER'])?></td>
+        <td><?php 
+				if($game['IS_STAY']) echo "STAYED";
+				else echo ($game['ATK_CARD']['COLOR'].":".$game['ATK_CARD']['NUMBER'])?></td>
+        <td><?php 
+				if($game['IS_STAY']) echo "STAYED";
+				else echo ($game['TGT_CARD']['COLOR'].":".$game['TGT_CARD']['NUMBER'])?></td>
         <td><?php echo ($game['TGT_NUMBER'])?></td>
         <td><?php echo ($game['CAN_STAY'])?1:0?></td>
         <td><?php echo ($game['IS_STAY'])?1:0?></td>
